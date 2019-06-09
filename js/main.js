@@ -27,7 +27,7 @@ var noticeTwo = {
    },
 
   "location": {
-    "x": 30
+    "x": 30,
     "y": 200
    }
 };
@@ -42,7 +42,7 @@ var noticeThree = {
    },
 
   "location": {
-    "x": 55
+    "x": 55,
     "y": 400
    }
 };
@@ -57,7 +57,7 @@ var noticeFour = {
    },
 
   "location": {
-    "x": 45
+    "x": 45,
     "y": 610
    }
 };
@@ -72,7 +72,7 @@ var noticeFive = {
    },
 
   "location": {
-    "x": 60
+    "x": 60,
     "y": 450
    }
 };
@@ -87,7 +87,7 @@ var noticeSix = {
    },
 
   "location": {
-    "x": 15
+    "x": 15,
     "y": 160
    }
 };
@@ -102,7 +102,7 @@ var noticeSeven = {
    },
 
   "location": {
-    "x": 24
+    "x": 24,
     "y": 135
    }
 };
@@ -117,7 +117,7 @@ var noticeEight = {
    },
 
   "location": {
-    "x": 75
+    "x": 75,
     "y": 370
    }
 };
