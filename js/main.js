@@ -12,7 +12,7 @@ var noticeOne = {
    },
 
   "location": {
-    "x": 10
+    "x": 10,
     "y": 130
    }
 };
