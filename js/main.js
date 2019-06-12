@@ -6,9 +6,19 @@ var LOCATIONX_Y = 700;
 var LOCATIONY_X = 130;
 var LOCATIONY_Y = 630;
 
-var map = document.querySelector('.map');
-map.classList.remove('map--faded');
-var mapPins = map.querySelector('.map__pins');
+function showElement(unit) {
+  return document.querySelector(unit);
+}
+
+function hideElement(unit, element) {
+  element.classList.remove(unit);
+}
+
+var map = showElement('.map');
+hideElement('map--faded', map);
+
+var mapPins = showElement('.map__pins');
+
 var pin = document.getElementById('pin');
 
 var typeHouse = ['palace', 'flat', 'house', 'bungalo'];
@@ -64,12 +74,14 @@ var renderPoint = function (ad) {
   return mapPin;
 };
 
-var fragment = document.createDocumentFragment();
 var renderPoints = function (ads) {
+  var fragment = document.createDocumentFragment();
+
   for (var i = 0; i < ads.length; i++) {
     fragment.appendChild(renderPoint(ads[i]));
   }
+
+  mapPins.appendChild(fragment);
 };
 
 renderPoints(generateAds(AD_COUNT));
-mapPins.appendChild(fragment);
