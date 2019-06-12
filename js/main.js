@@ -9,6 +9,7 @@ var LOCATIONY_Y = 630;
 var map = document.querySelector('.map');
 map.classList.remove('map--faded');
 var mapPins = map.querySelector('.map__pins');
+var pin = document.getElementById('pin');
 
 var typeHouse = ['palace', 'flat', 'house', 'bungalo'];
 
@@ -19,7 +20,7 @@ function getRandomInteger(min, max) {
 }
 
 var generateAd = function (index) {
-  var avatarUrl = index > AD_COUNT ? 'img/avatars/user' + (index + 1) + '.png' : 'img/avatars/user0' + (index + 1) + '.png'
+  var avatarUrl = index > AD_COUNT ? 'img/avatars/user' + (index + 1) + '.png' : 'img/avatars/user0' + (index + 1) + '.png';
 
   var ad = {
     author: {
@@ -32,9 +33,9 @@ var generateAd = function (index) {
 
     location: {
       x: getRandomInteger(LOCATIONX_X, LOCATIONX_Y),
-      y: getRandomInteger(LOCATIONY_X,LOCATIONY_Y)
+      y: getRandomInteger(LOCATIONY_X, LOCATIONY_Y)
     }
-  }
+  };
 
   return ad;
 };
