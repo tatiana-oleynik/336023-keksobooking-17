@@ -1,126 +1,74 @@
 'use strict';
 
-var ads = [noticeOne, noticeTwo, noticeThree, noticeFour, noticeFive, noticeSix, noticeSeven, noticeEight];
-
-var noticeOne = {
-  "author": {
-    "avatar": 'img/avatars/user01.png'
-  },
-
-  "offer": {
-    "type": 'flat'
-   },
-
-  "location": {
-    "x": 10,
-    "y": 130
-   }
-};
-
-var noticeTwo = {
-  "author": {
-    "avatar": 'img/avatars/user02.png'
-  },
-
-  "offer": {
-    "type": 'house'
-   },
-
-  "location": {
-    "x": 30,
-    "y": 200
-   }
-};
-
-var noticeThree = {
-  "author": {
-    "avatar": 'img/avatars/user03.png'
-  },
-
-  "offer": {
-    "type": 'palace'
-   },
-
-  "location": {
-    "x": 55,
-    "y": 400
-   }
-};
-
-var noticeFour = {
-  "author": {
-    "avatar": 'img/avatars/user04.png'
-  },
-
-  "offer": {
-    "type": 'bungalo'
-   },
-
-  "location": {
-    "x": 45,
-    "y": 610
-   }
-};
-
-var noticeFive = {
-  "author": {
-    "avatar": 'img/avatars/user05.png'
-  },
-
-  "offer": {
-    "type": 'flat'
-   },
-
-  "location": {
-    "x": 60,
-    "y": 450
-   }
-};
-
-var noticeSix = {
-  "author": {
-    "avatar": 'img/avatars/user06.png'
-  },
-
-  "offer": {
-    "type": 'house'
-   },
-
-  "location": {
-    "x": 15,
-    "y": 160
-   }
-};
-
-var noticeSeven = {
-  "author": {
-    "avatar": 'img/avatars/user07.png'
-  },
-
-  "offer": {
-    "type": 'palace'
-   },
-
-  "location": {
-    "x": 24,
-    "y": 135
-   }
-};
-
-var noticeEight = {
-  "author": {
-    "avatar": 'img/avatars/user08.png'
-  },
-
-  "offer": {
-    "type": 'bungalo'
-   },
-
-  "location": {
-    "x": 75,
-    "y": 370
-   }
-};
+var AD_COUNT = 8;
+var LOCATIONX_X = 0;
+var LOCATIONX_Y = 700;
+var LOCATIONY_X = 130;
+var LOCATIONY_Y = 630;
 
 var map = document.querySelector('.map');
 map.classList.remove('map--faded');
+var mapPins = map.querySelector('.map__pins');
+
+var typeHouse = ['palace', 'flat', 'house', 'bungalo'];
+
+function getRandomInteger(min, max) {
+  var rand = min + Math.random() * (max + 1 - min);
+  rand = Math.floor(rand);
+  return rand;
+}
+
+var generateAd = function (index) {
+  var avatarUrl = index > AD_COUNT ? 'img/avatars/user' + (index + 1) + '.png' : 'img/avatars/user0' + (index + 1) + '.png'
+
+  var ad = {
+    author: {
+      avatar: avatarUrl,
+    },
+
+    offer: {
+      type: typeHouse[getRandomInteger(0, typeHouse.length - 1)]
+    },
+
+    location: {
+      x: getRandomInteger(LOCATIONX_X, LOCATIONX_Y),
+      y: getRandomInteger(LOCATIONY_X,LOCATIONY_Y)
+    }
+  }
+
+  return ad;
+};
+
+var generateAds = function (count) {
+  var adsData = [];
+
+  for (var i = 0; i < count; i++) {
+    adsData.push(generateAd(i));
+  }
+
+  return adsData;
+};
+
+var renderPoint = function (ad) {
+  var mapPin = pin.content.cloneNode(true);
+  var pinButton = mapPin.querySelector('.map__pin');
+  var pinImg = mapPin.querySelector('img');
+
+  pinButton.style.left = ad.location.x + 'px';
+  pinButton.style.top = ad.location.y + 'px';
+
+  pinImg.src = ad.author.avatar;
+  pinImg.alt = ad.offer.title;
+
+  return mapPin;
+};
+
+var fragment = document.createDocumentFragment();
+var renderPoints = function (ads) {
+  for (var i = 0; i < ads.length; i++) {
+    fragment.appendChild(renderPoint(ads[i]));
+  }
+};
+
+renderPoints(generateAds(AD_COUNT));
+mapPins.appendChild(fragment);
