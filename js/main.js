@@ -15,17 +15,13 @@ function hideElement(className, element) {
   element.classList.remove(className);
 }
 
-function findElement(idElement) {
-  return document.getElementById(idElement);
-}
-
 function disableElement(elementName) {
   elementName.setAttribute('disabled', 'disabled');
 }
 
 var adForm = document.querySelector('.ad-form');
 var adFormElements = adForm.children;
-var mapFilters =  document.querySelector('.map__filters');
+var mapFilters = document.querySelector('.map__filters');
 var mapFiltersElements = mapFilters.children;
 
 function disableForm() {
@@ -33,29 +29,25 @@ function disableForm() {
     disableElement(adFormElements[i]);
   }
 
-  for (var i = 0; i < mapFiltersElements.length; i++) {
+  for (i = 0; i < mapFiltersElements.length; i++) {
     disableElement(mapFiltersElements[i]);
   }
-};
+}
 
 disableForm();
-
-function removeAttribute(elementName) {
-  elementName.removeAttribute('disabled');
-}
 
 function activeForm() {
   for (var i = 0; i < adFormElements.length; i++) {
     adFormElements[i].removeAttribute('disabled');
-  };
+  }
 
-  for (var i = 0; i < mapFiltersElements.length; i++) {
+  for (i = 0; i < mapFiltersElements.length; i++) {
     mapFiltersElements[i].removeAttribute('disabled');
-  };
+  }
 }
 
 var map = showElement('.map');
-var adForm = showElement('.ad-form');
+var address = document.getElementById('address');
 
 var mapPinMain = showElement('.map__pin--main');
 
