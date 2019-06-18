@@ -40,7 +40,7 @@ var housingRooms = findElement('housing-rooms');
 var housingGuests = findElement('housing-guests');
 var housingFeatures = findElement('housing-features');
 
-function addAttribute(elementName) {
+function disableElement(elementName) {
   elementName.setAttribute('disabled', 'disabled');
 }
 
@@ -48,26 +48,32 @@ function removeAttribute(elementName) {
   elementName.removeAttribute('disabled');
 }
 
-addAttribute(avatar);
-addAttribute(title);
-addAttribute(address);
-addAttribute(type);
-addAttribute(price);
-addAttribute(timeout);
-addAttribute(timein);
-addAttribute(roomNumber);
-addAttribute(capacity);
-addAttribute(features);
-addAttribute(images);
-addAttribute(formReset);
-addAttribute(formSubmit);
-addAttribute(description);
+var adForm = document.querySelector('.ad-form');
+var adFormElements = adForm.children;
+var mapFilters =  document.querySelector('.map__filters');
+var mapFiltersElements = mapFilters.children;
 
-addAttribute(housingType);
-addAttribute(housingPrice);
-addAttribute(housingRooms);
-addAttribute(housingGuests);
-addAttribute(housingFeatures);
+function disableForm() {
+  for (var i = 0; i < adFormElements.length; i++) {
+    disableElement(adFormElements[i]);
+  }
+
+  for (var i = 0; i < mapFiltersElements.length; i++) {
+    disableElement(mapFiltersElements[i]);
+  }
+};
+
+disableForm();
+
+function activeForm() {
+  for (var i = 0; i < adFormElements.length; i++) {
+    adFormElements[i].removeAttribute('disabled');
+  };
+
+  for (var i = 0; i < mapFiltersElements.length; i++) {
+    mapFiltersElements[i].removeAttribute('disabled');
+  };
+}
 
 var map = showElement('.map');
 var adForm = showElement('.ad-form');
@@ -77,27 +83,7 @@ var mapPinMain = showElement('.map__pin--main');
 mapPinMain.addEventListener('mouseup', function () {
   hideElement('map--faded', map);
   hideElement('ad-form--disabled', adForm);
-  removeAttribute(avatar);
-  removeAttribute(title);
-  removeAttribute(address);
-  removeAttribute(type);
-  removeAttribute(price);
-  removeAttribute(timeout);
-  removeAttribute(timein);
-  removeAttribute(roomNumber);
-  removeAttribute(capacity);
-  removeAttribute(features);
-  removeAttribute(images);
-  removeAttribute(formReset);
-  removeAttribute(formSubmit);
-  removeAttribute(description);
-
-  removeAttribute(housingType);
-  removeAttribute(housingPrice);
-  removeAttribute(housingRooms);
-  removeAttribute(housingGuests);
-  removeAttribute(housingFeatures);
-
+  activeForm();
   address.value = MAP_PIN_MAIN_COORDINATE;
 });
 
