@@ -19,33 +19,8 @@ function findElement(idElement) {
   return document.getElementById(idElement);
 }
 
-var description = findElement('description');
-var formSubmit = showElement('.ad-form__submit');
-var formReset = showElement('.ad-form__reset');
-var images = findElement('images');
-var features = showElement('.features');
-var capacity = findElement('capacity');
-var roomNumber = findElement('room_number');
-var timein = findElement('timein');
-var timeout = findElement('timeout');
-var price = findElement('price');
-var type = findElement('type');
-var address = findElement('address');
-var title = findElement('title');
-var avatar = findElement('avatar');
-
-var housingType = findElement('housing-type');
-var housingPrice = findElement('housing-price');
-var housingRooms = findElement('housing-rooms');
-var housingGuests = findElement('housing-guests');
-var housingFeatures = findElement('housing-features');
-
 function disableElement(elementName) {
   elementName.setAttribute('disabled', 'disabled');
-}
-
-function removeAttribute(elementName) {
-  elementName.removeAttribute('disabled');
 }
 
 var adForm = document.querySelector('.ad-form');
@@ -64,6 +39,10 @@ function disableForm() {
 };
 
 disableForm();
+
+function removeAttribute(elementName) {
+  elementName.removeAttribute('disabled');
+}
 
 function activeForm() {
   for (var i = 0; i < adFormElements.length; i++) {
