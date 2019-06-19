@@ -60,7 +60,7 @@ function generateAd(index) {
   };
 
   return ad;
-};
+}
 
 function generateAds(count) {
   var adsData = [];
@@ -70,7 +70,7 @@ function generateAds(count) {
   }
 
   return adsData;
-};
+}
 
 function renderPoint(ad) {
   var mapPin = pin.content.cloneNode(true);
@@ -84,7 +84,7 @@ function renderPoint(ad) {
   pinImg.alt = ad.offer.title;
 
   return mapPin;
-};
+}
 
 function renderPoints(ads) {
   var fragment = document.createDocumentFragment();
@@ -96,7 +96,7 @@ function renderPoints(ads) {
   mapPinMain.addEventListener('click', function () {
     mapPins.appendChild(fragment);
   });
-};
+}
 
 renderPoints(generateAds(AD_COUNT));
 
