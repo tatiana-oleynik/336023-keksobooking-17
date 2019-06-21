@@ -6,6 +6,9 @@ var LOCATIONX_Y = 700;
 var LOCATIONY_X = 130;
 var LOCATIONY_Y = 630;
 var MAP_PIN_MAIN_COORDINATE = '570,375';
+var PRICE_FLAT = 1000;
+var PRICE_HOUSE = 5000;
+var PRICE_PALACE = 10000;
 
 var adForm = document.querySelector('.ad-form');
 var adFormElements = adForm.children;
@@ -148,11 +151,11 @@ type.addEventListener('change', function (event) {
   if (event.target.value === 'bungalo') {
     price.setAttribute('placeholder', 0);
   } else if (event.target.value === 'flat') {
-    price.setAttribute('placeholder', 1000);
+    price.setAttribute('placeholder', PRICE_FLAT);
   } else if (event.target.value === 'house') {
-    price.setAttribute('placeholder', 5000);
+    price.setAttribute('placeholder', PRICE_HOUSE);
   } else if (event.target.value === 'palace') {
-    price.setAttribute('placeholder', 10000);
+    price.setAttribute('placeholder', PRICE_PALACE);
   }
 });
 
