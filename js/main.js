@@ -18,7 +18,6 @@ var pin = document.getElementById('pin');
 var address = document.getElementById('address');
 var title = document.getElementById('title');
 var price = document.getElementById('price');
-var address = document.getElementById('address');
 var type = document.getElementById('type');
 var timein = document.getElementById('timein');
 var timeout = document.getElementById('timeout');
