@@ -198,8 +198,8 @@ disableForm();
       }
 
       var shift = {
-        x: startCoords.x - moveEvt.clientX,
-        y: startCoords.y - moveEvt.clientY
+        x: startCoords.x - upEvt.clientX,
+        y: startCoords.y - upveEvt.clientY
       };
 
       var pinTailCoords = Math.ceil(MAP_PIN_HEIGHT / 2) + TAIL_HEIGHT;
