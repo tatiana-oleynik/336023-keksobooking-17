@@ -199,7 +199,7 @@ disableForm();
 
       var shift = {
         x: startCoords.x - upEvt.clientX,
-        y: startCoords.y - upveEvt.clientY
+        y: startCoords.y - upEvt.clientY
       };
 
       var pinTailCoords = Math.ceil(MAP_PIN_HEIGHT / 2) + TAIL_HEIGHT;
