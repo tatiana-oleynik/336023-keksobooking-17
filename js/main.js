@@ -173,11 +173,11 @@ disableForm();
 
       if (x < 0) {
         x = 0;
-      } else if (x > WINDOW_WIDTH  - MAP_PIN_WIDTH) {
-        x = WINDOW_WIDTH  - MAP_PIN_WIDTH;
+      } else if (x > WINDOW_WIDTH - MAP_PIN_WIDTH) {
+        x = WINDOW_WIDTH - MAP_PIN_WIDTH;
       }
 
-      mapPinMain.style.top =  y + 'px';
+      mapPinMain.style.top = y + 'px';
       mapPinMain.style.left = x + 'px';
       address.value = x + ',' + (y + pinTailCoords);
     };
@@ -190,17 +190,22 @@ disableForm();
       document.removeEventListener('mouseup', onMouseUp);
 
       if (dragged) {
-        var onClickPreventDefault = function (evt) {
-          evt.preventDefault();
-          mapPinMain.removeEventListener('click', onClickPreventDefault)
+        var onClickPreventDefault = function (event) {
+          event.preventDefault();
+          mapPinMain.removeEventListener('click', onClickPreventDefault);
         };
         mapPinMain.addEventListener('click', onClickPreventDefault);
       }
 
+      var shift = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY
+      };
+
       var pinTailCoords = Math.ceil(MAP_PIN_HEIGHT / 2) + TAIL_HEIGHT;
       var y = mapPinMain.offsetTop - shift.y;
       var x = mapPinMain.offsetLeft - shift.x;
-      mapPinMain.style.top =  y + 'px';
+      mapPinMain.style.top = y + 'px';
       mapPinMain.style.left = x + 'px';
       address.value = x + ',' + (y + pinTailCoords);
 
