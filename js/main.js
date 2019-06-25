@@ -163,12 +163,11 @@ disableForm();
       var y = mapPinMain.offsetTop - shift.y;
       var x = mapPinMain.offsetLeft - shift.x;
 
-      if (y < (COOR_Y_MIN - MAP_PIN_HEIGHT / 2 - TAIL_HEIGHT)) {
+      if (y < 130) {
         y = COOR_Y_MIN - MAP_PIN_HEIGHT / 2 - TAIL_HEIGHT;
-        window.elements.mapPinMain.setAttribute('style', 'cursor: none');
-      } else if (y > (COOR_Y_MAX + MAP_PIN_HEIGHT) - MAP_PIN_HEIGHT / 2 - TAIL_HEIGHT) {
+
+      } else if (y > 630) {
         y = (COOR_Y_MAX + MAP_PIN_HEIGHT) - MAP_PIN_HEIGHT / 2 - TAIL_HEIGHT;
-        window.elements.mapPinMain.setAttribute('style', 'cursor: none');
       }
 
       if (x < 0) {
