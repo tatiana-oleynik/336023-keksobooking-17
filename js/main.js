@@ -213,6 +213,7 @@ disableForm();
     min: 0,
     max: 1135
   };
+
   var Y_COORDS = {
     min: 46,
     max: 546
