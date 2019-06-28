@@ -5,10 +5,10 @@ var LOCATIONX_X = 0;
 var LOCATIONX_Y = 700;
 var LOCATIONY_X = 130;
 var LOCATIONY_Y = 630;
-var TAIL_HEIGHT = 22;
+// var TAIL_HEIGHT = 22;
 var MAP_PIN_HEIGHT = 65;
 var MAP_PIN_WIDTH = 65;
-var WINDOW_WIDTH = 1200;
+// var WINDOW_WIDTH = 1200;
 var PRICE = {
   FLAT: 1000,
   HOUSE: 5000,
@@ -220,7 +220,7 @@ disableForm();
   };
 
   var isOnMap = function (coordsNum, coordsObj) {
-     if (coordsNum < coordsObj.min) {
+    if (coordsNum < coordsObj.min) {
       return coordsObj.min;
     }
     if (coordsNum > coordsObj.max) {
@@ -230,10 +230,10 @@ disableForm();
   };
 
   var getAddress = function (weight, heigth) {
-   var left = +mapPinMain.offsetLeft + Math.round(weight / 2);
-   var top = +mapPinMain.offsetTop + Math.round(heigth);
-   address.value = '' + left + ', ' + top;
- };
+    var left = +mapPinMain.offsetLeft + Math.round(weight / 2);
+    var top = +mapPinMain.offsetTop + Math.round(heigth);
+    address.value = '' + left + ', ' + top;
+  };
 
   var mainPinMousedownHandler = function (evt) {
     var startCoords = {
