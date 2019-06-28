@@ -161,7 +161,7 @@ disableForm();
 
       if (y < LOCATIONY_X) {
         y = LOCATIONY_X - TAIL_HEIGHT;
-      } else if (y > LOCATIONY_Y) {
+      } else if (y > LOCATIONY_Y - (MAP_PIN_HEIGHT + TAIL_HEIGHT)) {
         y = LOCATIONY_Y - TAIL_HEIGHT;
       }
 
