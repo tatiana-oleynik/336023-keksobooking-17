@@ -5,10 +5,8 @@ var LOCATIONX_X = 0;
 var LOCATIONX_Y = 700;
 var LOCATIONY_X = 130;
 var LOCATIONY_Y = 630;
-var TAIL_HEIGHT = 22;
 var MAP_PIN_HEIGHT = 84;
 var MAP_PIN_WIDTH = 64;
-var WINDOW_WIDTH = 1200;
 var PRICE = {
   FLAT: 1000,
   HOUSE: 5000,
@@ -152,7 +150,6 @@ disableForm();
   var setAddress = function (weight, heigth) {
     var left = mapPinMain.offsetLeft + Math.round(weight / 2);
     var top = mapPinMain.offsetTop + Math.round(heigth);
-    console.log(top);
     address.value = left + ', ' + top;
   };
 
