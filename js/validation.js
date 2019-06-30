@@ -4,7 +4,7 @@
   var title = document.getElementById('title');
   var price = document.getElementById('price');
   var timein = document.getElementById('timein');
-  var timein = document.getElementById('timein');
+  var type = document.getElementById('type');
   var timeout = document.getElementById('timeout');
   var PRICE = {
     FLAT: 1000,

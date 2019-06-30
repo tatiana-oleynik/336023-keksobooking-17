@@ -1,18 +1,14 @@
 'use strict';
 
 (function () {
-  var LOCATIONX_X = 0;
-  var LOCATIONX_Y = 700;
-  var LOCATIONY_X = 130;
-  var LOCATIONY_Y = 630;
   var MAP_PIN_HEIGHT = 84;
   var MAP_PIN_WIDTH = 64;
 
   var mapPinMain = document.querySelector('.map__pin--main');
   var map = document.querySelector('.map');
-  var mapPins = document.querySelector('.map__pins');
   var adForm = document.querySelector('.ad-form');
   var address = document.getElementById('address');
+
   //  Функция расчета координат главной метки
   (function () {
 
