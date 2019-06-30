@@ -18,6 +18,7 @@
 
     window.activeForm = activeForm;
   }
+  activeForm();
 
   //  Функция деактивации формы
   function disableForm() {
