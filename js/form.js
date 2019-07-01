@@ -15,10 +15,9 @@
     for (i = 0; i < mapFiltersElements.length; i++) {
       mapFiltersElements[i].removeAttribute('disabled');
     }
-
-    window.activeForm = activeForm;
   }
-  activeForm();
+
+  window.activeForm = activeForm;
 
   //  Функция деактивации формы
   function disableForm() {
