@@ -17,8 +17,6 @@
     }
   }
 
-  window.activeForm = activeForm;
-
   //  Функция деактивации формы
   function disableForm() {
     for (var i = 0; i < adFormElements.length; i++) {
@@ -31,4 +29,6 @@
   }
 
   disableForm();
+
+  window.activeForm = activeForm;
 })();
