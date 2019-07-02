@@ -5,7 +5,6 @@
 
   window.load = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
-    console.log(xhr);
     xhr.responseType = 'json';
 
     xhr.open('GET', URL);
