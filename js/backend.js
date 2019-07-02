@@ -13,7 +13,7 @@
       if (xhr.status === 200) {
         onSuccess(xhr.response);
       } else {
-        onError('Ошибка загрузки объявления');
+        onError(message);
       }
     });
 
@@ -22,7 +22,7 @@
 
   var onError = function (message) {
     var errorMessage = querySelector('.error__message');
-    errorMessage.text = message;
+    errorMessage.text = 'Ошибка загрузки объявления';
   };
 
   window.load(window.renderPoints, onError);

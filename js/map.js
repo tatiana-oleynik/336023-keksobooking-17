@@ -1,17 +1,8 @@
 'use strict';
 
 (function () {
-  var AD_COUNT = 8;
-  var LOCATIONX_X = 0;
-  var LOCATIONX_Y = 700;
-  var LOCATIONY_X = 130;
-  var LOCATIONY_Y = 630;
-
   var mapPinMain = document.querySelector('.map__pin--main');
   var mapPins = document.querySelector('.map__pins');
-  var pin = document.getElementById('pin');
-
-  var typeHouse = ['palace', 'flat', 'house', 'bungalo'];
 
   // Создает метку на карте
   function renderPoint(ad) {
