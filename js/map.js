@@ -13,40 +13,7 @@
 
   var typeHouse = ['palace', 'flat', 'house', 'bungalo'];
 
-  //  Создает объявление
-  function generateAd(index) {
-    var avatarUrl = index > AD_COUNT ? 'img/avatars/user' + (index + 1) + '.png' : 'img/avatars/user0' + (index + 1) + '.png';
-
-    var ad = {
-      author: {
-        avatar: avatarUrl,
-      },
-
-      offer: {
-        type: typeHouse[window.util.getRandomInteger(0, typeHouse.length - 1)]
-      },
-
-      location: {
-        x: window.util.getRandomInteger(LOCATIONX_X, LOCATIONX_Y),
-        y: window.util.getRandomInteger(LOCATIONY_X, LOCATIONY_Y)
-      }
-    };
-
-    return ad;
-  }
-
-  //  Создает объявления
-  function generateAds(count) {
-    var adsData = [];
-
-    for (var i = 0; i < count; i++) {
-      adsData.push(generateAd(i));
-    }
-
-    return adsData;
-  }
-
-  //  Создает метку на карте
+  // Создает метку на карте
   function renderPoint(ad) {
     var mapPin = pin.content.cloneNode(true);
     var pinButton = mapPin.querySelector('.map__pin');
@@ -61,7 +28,7 @@
     return mapPin;
   }
 
-  //  Создает метки на карте
+  // Создает метки на карте
   function renderPoints(ads) {
     var fragment = document.createDocumentFragment();
 
@@ -74,5 +41,5 @@
     });
   }
 
-  renderPoints(generateAds(AD_COUNT));
+  window.renderPoints = renderPoints;
 })();
