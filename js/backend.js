@@ -13,12 +13,19 @@
       if (xhr.status === 200) {
         onSuccess(xhr.response);
       } else {
-        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        onError('Произошла ошибка соединения');
       }
     });
-    xhr.addEventListener('error', function () {
-      onError('Произошла ошибка соединения');
-    });
+
+    finction onError() {
+      var error = document.getElementById('error');
+      var main = document.getElementsByTagName('main');
+      var fragment = document.createDocumentFragment();
+
+      error.addEventListener('error', function () {
+        main.appendChild(fragment);
+      });
+    }
 
     xhr.send();
   };
