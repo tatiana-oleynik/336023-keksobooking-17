@@ -13,17 +13,15 @@
       if (xhr.status === 200) {
         onSuccess(xhr.response);
       } else {
-        onError(message);
+        onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
+    });
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
     });
 
     xhr.send();
   };
 
-  var onError = function (message) {
-    var errorMessage = querySelector('.error__message');
-    errorMessage.text = 'Ошибка загрузки объявления';
-  };
-
-  window.load(window.renderPoints, onError);
+  window.load(window.renderPoints);
 })();
