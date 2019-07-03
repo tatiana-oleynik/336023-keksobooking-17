@@ -3,6 +3,7 @@
 (function () {
   var mapPinMain = document.querySelector('.map__pin--main');
   var mapPins = document.querySelector('.map__pins');
+  var pin = document.getElementById('pin');
 
   // Создает метку на карте
   function renderPoint(ad) {
