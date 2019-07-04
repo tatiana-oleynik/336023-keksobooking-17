@@ -17,7 +17,6 @@
       } else {
         onError(ERROR_SERVER);
       }
-      console.log(onError);
     });
 
     xhr.send();
