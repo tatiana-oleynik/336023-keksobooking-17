@@ -15,8 +15,9 @@
       if (xhr.status === 200) {
         onSuccess(xhr.response);
       } else {
-        onError('ERROR_SERVER');
+        onError(ERROR_SERVER);
       }
+      console.log(onError);
     });
 
     xhr.send();
