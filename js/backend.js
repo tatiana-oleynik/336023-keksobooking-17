@@ -9,23 +9,15 @@
 
     xhr.open('GET', URL);
 
+    var ERROR_SERVER = 'Произошла ошибка соединения. Пожалуйста, обновите страницу.';
+
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
         onSuccess(xhr.response);
       } else {
-        onError('Произошла ошибка соединения');
+        onError('ERROR_SERVER');
       }
     });
-
-    finction onError() {
-      var error = document.getElementById('error');
-      var main = document.getElementsByTagName('main');
-      var fragment = document.createDocumentFragment();
-
-      error.addEventListener('error', function () {
-        main.appendChild(fragment);
-      });
-    }
 
     xhr.send();
   };
