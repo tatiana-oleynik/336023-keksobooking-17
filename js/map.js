@@ -43,7 +43,7 @@
     fragment.appendChild(errorConnection);
 
     for (var i = 0; i < main.length; i++) {
-  	  main[i].appendChild(fragment);
+      main[i].appendChild(fragment);
     }
   }
 
