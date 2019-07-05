@@ -4,6 +4,8 @@
   var mapPinMain = document.querySelector('.map__pin--main');
   var mapPins = document.querySelector('.map__pins');
   var pin = document.getElementById('pin');
+  var error = document.getElementById('error');
+  var main = document.getElementsByTagName('main');
 
   // Создает метку на карте
   function renderPoint(ad) {
@@ -33,5 +35,20 @@
     });
   }
 
+  // Отрисовывает ошибку сервера
+  function renderError() {
+    var errorConnection = error.content.cloneNode(true);
+    var errorMessage = errorConnection.querySelector('.error__message');
+    var errorButton = errorConnection.querySelector('.error__button');
+
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(errorConnection);
+
+    for (var i = 0; i < main.length; i++) {
+  		main[i].appendChild(fragment);
+  	}
+  }
+
   window.renderPoints = renderPoints;
+  window.renderError = renderError;
 })();
