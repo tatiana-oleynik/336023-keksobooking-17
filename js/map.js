@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-  var mapPinMain = document.querySelector('.map__pin--main');
   var mapPins = document.querySelector('.map__pins');
   var pin = document.getElementById('pin');
   var error = document.getElementById('error');
