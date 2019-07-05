@@ -30,9 +30,7 @@
       fragment.appendChild(renderPoint(ads[i]));
     }
 
-    mapPinMain.addEventListener('click', function () {
-      mapPins.appendChild(fragment);
-    });
+    mapPins.appendChild(fragment);
   }
 
   // Отрисовывает ошибку сервера
