@@ -38,15 +38,13 @@
   // Отрисовывает ошибку сервера
   function renderError() {
     var errorConnection = error.content.cloneNode(true);
-    var errorMessage = errorConnection.querySelector('.error__message');
-    var errorButton = errorConnection.querySelector('.error__button');
 
     var fragment = document.createDocumentFragment();
     fragment.appendChild(errorConnection);
 
     for (var i = 0; i < main.length; i++) {
-  		main[i].appendChild(fragment);
-  	}
+  	  main[i].appendChild(fragment);
+    }
   }
 
   window.renderPoints = renderPoints;
