@@ -4,7 +4,6 @@
   var SUCCESS = 200;
   var ERROR_SERVER = 'Произошла ошибка соединения. Пожалуйста, обновите страницу.';
   var URL = 'https://js.dump.academy/keksobooking/data';
-  var mapPinMain = document.querySelector('.map__pin--main');
 
   window.load = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
@@ -22,8 +21,4 @@
 
     xhr.send();
   };
-
-  mapPinMain.addEventListener('click', function () {
-    window.load(window.renderPoints, window.renderError);
-  });
 })();

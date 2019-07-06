@@ -5,6 +5,7 @@
   var pin = document.getElementById('pin');
   var error = document.getElementById('error');
   var main = document.getElementsByTagName('main');
+  var mapPinMain = document.querySelector('.map__pin--main');
 
   // Создает метку на карте
   function renderPoint(ad) {
@@ -43,6 +44,10 @@
       main[i].appendChild(fragment);
     }
   }
+
+  mapPinMain.addEventListener('click', function () {
+    window.load(window.renderPoints, window.renderError);
+  });
 
   window.renderPoints = renderPoints;
   window.renderError = renderError;
