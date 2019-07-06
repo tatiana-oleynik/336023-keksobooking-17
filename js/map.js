@@ -46,9 +46,6 @@
   }
 
   mapPinMain.addEventListener('click', function () {
-    window.load(window.renderPoints, window.renderError);
+    window.load(renderPoints, renderError);
   });
-
-  window.renderPoints = renderPoints;
-  window.renderError = renderError;
 })();
