@@ -48,4 +48,15 @@
   mapPinMain.addEventListener('click', function () {
     window.load(renderPoints, renderError);
   });
+
+  // Удаляет пины
+  function removePins() {
+    var mapPinsItems = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+    for (var i = 0; i < mapPinsItems.length; i++) {
+      mapPinsItems[i].remove();
+    }
+  };
+
+  window.renderPoints = renderPoints;
+  window.removePins = removePins;
 })();
