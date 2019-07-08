@@ -55,7 +55,7 @@
     for (var i = 0; i < mapPinsItems.length; i++) {
       mapPinsItems[i].remove();
     }
-  };
+  }
 
   window.renderPoints = renderPoints;
   window.removePins = removePins;
