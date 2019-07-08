@@ -57,6 +57,8 @@
     }
   }
 
-  window.renderPoints = renderPoints;
-  window.removePins = removePins;
+  window.map = {
+    renderPoints: renderPoints,
+    removePins: removePins
+  };
 })();
