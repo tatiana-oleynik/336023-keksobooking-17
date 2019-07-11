@@ -41,7 +41,7 @@
     var mainPinMousedownHandler = function (evt) {
       window.util.hideElement('map--faded', map);
       window.util.hideElement('ad-form--disabled', adForm);
-      window.activeForm();
+      window.activateForm();
 
       var startCoords = {
         x: evt.clientX,

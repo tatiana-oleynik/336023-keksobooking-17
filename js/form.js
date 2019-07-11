@@ -7,7 +7,7 @@
   var mapFiltersElements = mapFilters.children;
 
   //  Функция активации формы
-  function activeForm() {
+  function activateForm() {
     for (var i = 0; i < adFormElements.length; i++) {
       adFormElements[i].removeAttribute('disabled');
     }
@@ -30,5 +30,5 @@
 
   disableForm();
 
-  window.activeForm = activeForm;
+  window.activateForm = activateForm;
 })();
