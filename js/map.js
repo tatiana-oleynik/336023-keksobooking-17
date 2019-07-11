@@ -74,7 +74,7 @@
       fragment.appendChild(itemFeature);
     });
     return fragment;
-  };
+  }
 
   // Отрисовывает фотографии жилья
   function renderFragmentPhotos(data) {
@@ -85,12 +85,11 @@
       fragment.appendChild(itemPhoto);
     });
     return fragment;
-  };
+  }
 
   // Создает карточку объявления
   function renderAd(data) {
     var ad = mapCard.cloneNode(true);
-    var fragment = document.createDocumentFragment();
     ad.querySelector('.popup__title').textContent = data.offer.title;
     ad.querySelector('.popup__text--address').textContent = data.offer.address;
     ad.querySelector('.popup__text--price').textContent = data.offer.price + ' ₽/ночь';
