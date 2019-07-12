@@ -6,7 +6,7 @@
   var timein = document.getElementById('timein');
   var type = document.getElementById('type');
   var timeout = document.getElementById('timeout');
-  var PRICE = {
+  var Price = {
     FLAT: 1000,
     HOUSE: 5000,
     PALACE: 10000
@@ -35,11 +35,11 @@
     if (evt.target.value === 'bungalo') {
       price.setAttribute('placeholder', 0);
     } else if (evt.target.value === 'flat') {
-      price.setAttribute('placeholder', PRICE.FLAT);
+      price.setAttribute('placeholder', Price.FLAT);
     } else if (evt.target.value === 'house') {
-      price.setAttribute('placeholder', PRICE.HOUSE);
+      price.setAttribute('placeholder', Price.HOUSE);
     } else if (evt.target.value === 'palace') {
-      price.setAttribute('placeholder', PRICE.PALACE);
+      price.setAttribute('placeholder', Price.PALACE);
     }
   });
 
