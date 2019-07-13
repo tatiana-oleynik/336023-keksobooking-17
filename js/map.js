@@ -11,6 +11,7 @@
   var template = document.querySelector('template');
   var mapCard = template.content.querySelector('.map__card');
   var popupPhoto = template.content.querySelector('.popup__photo');
+  var map = document.querySelector('.map');
 
   var AccomodationType = {
     FLAT: 'Квартира',
@@ -30,6 +31,8 @@
 
     pinImg.src = ad.author.avatar;
     pinImg.alt = ad.offer.title;
+
+    mapPin.addEventListener('click', renderAd(ad));
 
     return mapPin;
   }
@@ -109,7 +112,6 @@
   function activateMap(data) {
     window.data = data;
     renderPoints(data.slice(0, PINS_LIMIT));
-    renderAd(data[0]);
   }
 
   mapPinMain.addEventListener('click', function () {
