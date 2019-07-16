@@ -104,8 +104,28 @@
     ad.querySelector('.popup__photos').removeChild(ad.querySelector('.popup__photo'));
     ad.querySelector('.popup__photos').appendChild(renderFragmentPhotos(data));
     ad.querySelector('.map__card img').src = data.author.avatar;
+    ad.querySelector('.popup__close').textContent = data.offer.popup;
 
     mapPins.appendChild(ad);
+
+    function hideCard() {
+      mapCard.classList.add('hidden');
+      popupClose.removeEventListener('click', onCloseAdBtnClick);
+      document.removeEventListener('keydown', onAdEscDown);
+    }
+
+    function onCloseAdBtnClick() {
+      hideCard();
+    }
+    popupClose.addEventListener('click', onCloseAdBtnClick);
+
+    function onAdEscDown(evt) {
+      window.utils.onEscDown(evt, hideCard);
+    }
+
+    document.addEventListener('keydown', onAdEscDown);
+
+    return mapCard;
   }
 
   function activateMap(data) {
@@ -133,30 +153,25 @@
     for (var i = 0; i < data.length; i++) {
       if (data[i].offer.title === event.target.alt) {
         ad = data[i];
-      };
-    };
+      }
+    }
     renderAd(ad);
     event.preventDefault();
   }
 
-  function hideCard() {
-    mapCard.classList.add('hidden');
-    popupClose.removeEventListener('click', onCloseAdBtnClick);
-    document.removeEventListener('keydown', onAdEscDown);
-  }
+  // function hideCard() {
+  //   mapCard.classList.add('hidden');
+  //   popupClose.removeEventListener('click', onCloseAdBtnClick);
+  //   document.removeEventListener('keydown', onAdEscDown);
+  // }
 
-  function onCloseAdBtnClick() {
-    hideCard();
-  };
+  // function onCloseAdBtnClick() {
+  //   hideCard();
+  // }
 
-  popupClose.addEventListener('click', onCloseAdBtnClick);
+  // popupClose.addEventListener('click', onCloseAdBtnClick);
 
-  function onAdEscDown(evt) {
-    window.utils.onEscDown(evt, hideCard);
-  }
-
-  document.addEventListener('keydown', onAdEscDown);
-  return mapCard;
+  // return mapCard;
 
   window.map = {
     renderPoints: renderPoints,
