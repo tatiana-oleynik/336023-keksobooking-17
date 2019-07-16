@@ -12,6 +12,7 @@
   var mapCard = template.content.querySelector('.map__card');
   var popupPhoto = template.content.querySelector('.popup__photo');
   var map = document.querySelector('.map');
+  var popupClose = mapCard.querySelector('.popup__close');
 
   var AccomodationType = {
     FLAT: 'Квартира',
@@ -31,8 +32,6 @@
 
     pinImg.src = ad.author.avatar;
     pinImg.alt = ad.offer.title;
-
-    mapPin.addEventListener('click', renderAd(ad));
 
     return mapPin;
   }
@@ -112,11 +111,51 @@
   function activateMap(data) {
     window.data = data;
     renderPoints(data.slice(0, PINS_LIMIT));
+    showCard();
   }
 
-  mapPinMain.addEventListener('click', function () {
+  function showCard() {
+    var mapPinItems = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+
+    for (var i = 0; i < mapPinItems.length; i++) {
+      var button = mapPinItems[i];
+      button.addEventListener('click', clickPoint);
+    }
+  }
+    mapPinMain.addEventListener('click', function () {
     window.load(activateMap, renderError);
   });
+
+  function clickPoint(event) {
+    window.data = data;
+    var ad = 0;
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].offer.title == event.target.alt) {
+        ad = data[i];
+      };
+    };
+    renderAd(ad);
+    event.preventDefault();
+  }
+
+  function hideCard() {
+    mapCard.classList.add('hidden');
+    popupClose.removeEventListener('click', onCloseAdBtnClick);
+    document.removeEventListener('keydown', onAdEscDown);
+  }
+
+  function onCloseAdBtnClick() {
+    hideCard();
+  };
+
+  popupClose.addEventListener('click', onCloseAdBtnClick);
+
+  function onAdEscDown(evt) {
+    window.utils.onEscDown(evt, hideCard);
+  }
+
+  document.addEventListener('keydown', onAdEscDown);
+  return mapCard;
 
   window.map = {
     renderPoints: renderPoints,
