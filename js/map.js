@@ -11,7 +11,7 @@
   var template = document.querySelector('template');
   var mapCard = template.content.querySelector('.map__card');
   var popupPhoto = template.content.querySelector('.popup__photo');
-  var map = document.querySelector('.map');
+  // var map = document.querySelector('.map');
   var popupClose = mapCard.querySelector('.popup__close');
 
   var AccomodationType = {
@@ -122,7 +122,8 @@
       button.addEventListener('click', clickPoint);
     }
   }
-    mapPinMain.addEventListener('click', function () {
+
+  mapPinMain.addEventListener('click', function () {
     window.load(activateMap, renderError);
   });
 
@@ -130,7 +131,7 @@
     window.data = data;
     var ad = 0;
     for (var i = 0; i < data.length; i++) {
-      if (data[i].offer.title == event.target.alt) {
+      if (data[i].offer.title === event.target.alt) {
         ad = data[i];
       };
     };
