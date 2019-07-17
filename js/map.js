@@ -142,21 +142,30 @@
         ad = data[i];
       }
     }
-
+    removePopup();
     renderAd(ad);
     event.preventDefault();
   }
+
+  function removePopup() {
+    var popup = document.querySelector('.popup');
+    if (popup) {
+      popup.remove();
+    }
+  };
 
   function removeAd(evt) {
     evt.target.parentNode.remove();
   };
 
   var onAdEscDown = function (evt) {
-    window.util.onEscDown(evt, removeAd);
+    window.util.onEscDown(evt, removePopup);
   };
 
   window.map = {
     renderPoints: renderPoints,
-    removePins: removePins
+    removePins: removePins,
+    removePopup: removePopup,
+    showCard: showCard
   };
 })();
