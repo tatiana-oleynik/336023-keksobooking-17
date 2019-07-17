@@ -137,9 +137,9 @@
 
   function clickPoint(event) {
     var ad = 0;
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].offer.title === event.target.alt) {
-        ad = data[i];
+    for (var i = 0; i < window.data.length; i++) {
+      if (window.data[i].offer.title === event.target.alt) {
+        ad = window.data[i];
       }
     }
     removePopup();
@@ -152,15 +152,15 @@
     if (popup) {
       popup.remove();
     }
-  };
+  }
 
   function removeAd(evt) {
     evt.target.parentNode.remove();
-  };
+  }
 
   var onAdEscDown = function (evt) {
     window.util.onEscDown(evt, removePopup);
-  };
+  }
 
   window.map = {
     renderPoints: renderPoints,
