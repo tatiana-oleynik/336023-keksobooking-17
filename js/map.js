@@ -160,7 +160,7 @@
 
   var onAdEscDown = function (evt) {
     window.util.onEscDown(evt, removePopup);
-  }
+  };
 
   window.map = {
     renderPoints: renderPoints,
