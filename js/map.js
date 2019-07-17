@@ -11,8 +11,6 @@
   var template = document.querySelector('template');
   var mapCard = template.content.querySelector('.map__card');
   var popupPhoto = template.content.querySelector('.popup__photo');
-  // var map = document.querySelector('.map');
-  var popupClose = mapCard.querySelector('.popup__close');
 
   var AccomodationType = {
     FLAT: 'Квартира',
@@ -108,22 +106,12 @@
 
     mapPins.appendChild(ad);
 
-    function hideCard() {
-      mapCard.classList.add('hidden');
-      popupClose.removeEventListener('click', onCloseAdBtnClick);
-      document.removeEventListener('keydown', onAdEscDown);
-    }
+    var popupClose = document.querySelectorAll('.popup__close');
 
-    function onCloseAdBtnClick() {
-      hideCard();
+    for (var i = 0; i < popupClose.length; i++) {
+      popupClose[i].addEventListener('click', removeAd);
+      popupClose[i].addEventListener('keydown', onAdEscDown);
     }
-    popupClose.addEventListener('click', onCloseAdBtnClick);
-
-    function onAdEscDown(evt) {
-      window.utils.onEscDown(evt, hideCard);
-    }
-
-    document.addEventListener('keydown', onAdEscDown);
 
     return mapCard;
   }
@@ -148,30 +136,24 @@
   });
 
   function clickPoint(event) {
-    window.data = data;
     var ad = 0;
     for (var i = 0; i < data.length; i++) {
       if (data[i].offer.title === event.target.alt) {
         ad = data[i];
       }
     }
+
     renderAd(ad);
     event.preventDefault();
   }
 
-  // function hideCard() {
-  //   mapCard.classList.add('hidden');
-  //   popupClose.removeEventListener('click', onCloseAdBtnClick);
-  //   document.removeEventListener('keydown', onAdEscDown);
-  // }
+  function removeAd(evt) {
+    evt.target.parentNode.remove();
+  };
 
-  // function onCloseAdBtnClick() {
-  //   hideCard();
-  // }
-
-  // popupClose.addEventListener('click', onCloseAdBtnClick);
-
-  // return mapCard;
+  var onAdEscDown = function (evt) {
+    window.util.onEscDown(evt, removeAd);
+  };
 
   window.map = {
     renderPoints: renderPoints,
