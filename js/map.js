@@ -143,7 +143,7 @@
     return ad;
   }
 
-  function clickPoint(event, ad) {
+  function clickPoint(event) {
     removePopup();
     var currentOffer = getCurrentOffer();
     renderAd(currentOffer);

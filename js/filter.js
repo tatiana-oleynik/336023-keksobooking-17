@@ -11,7 +11,7 @@
     var elementValue = event.target.value;
     var filterData = window.data.filter(function (it) {
       return it.offer.type === elementValue;
-    })
+    });
 
     window.map.renderPoints(filterData);
     window.map.addPinListeners(filterData);
