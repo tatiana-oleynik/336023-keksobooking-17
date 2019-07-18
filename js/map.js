@@ -106,12 +106,9 @@
 
     mapPins.appendChild(ad);
 
-    var popupClose = document.querySelectorAll('.popup__close');
-
-    for (var i = 0; i < popupClose.length; i++) {
-      popupClose[i].addEventListener('click', removeAd);
-      popupClose[i].addEventListener('keydown', onAdEscDown);
-    }
+    var popupClose = document.querySelector('.popup__close');
+    popupClose.addEventListener('click', removeAd);
+    popupClose.addEventListener('keydown', onAdEscDown);
 
     return mapCard;
   }
@@ -119,10 +116,10 @@
   function activateMap(data) {
     window.data = data;
     renderPoints(data.slice(0, PINS_LIMIT));
-    showCard();
+    addPinListeners();
   }
 
-  function showCard() {
+  function addPinListeners() {
     var mapPinItems = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
     for (var i = 0; i < mapPinItems.length; i++) {
@@ -135,15 +132,21 @@
     window.load(activateMap, renderError);
   });
 
-  function clickPoint(event) {
-    var ad = 0;
+  function getCurrentOffer() {
+    var ad = {};
     for (var i = 0; i < window.data.length; i++) {
       if (window.data[i].offer.title === event.target.alt) {
         ad = window.data[i];
       }
     }
+
+    return ad;
+  }
+
+  function clickPoint(event, ad) {
     removePopup();
-    renderAd(ad);
+    var currentOffer = getCurrentOffer();
+    renderAd(currentOffer);
     event.preventDefault();
   }
 
@@ -166,6 +169,6 @@
     renderPoints: renderPoints,
     removePins: removePins,
     removePopup: removePopup,
-    showCard: showCard
+    addPinListeners: addPinListeners
   };
 })();
