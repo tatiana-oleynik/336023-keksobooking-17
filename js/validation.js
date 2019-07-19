@@ -1,16 +1,17 @@
 'use strict';
 
 (function () {
-  var title = document.getElementById('title');
-  var price = document.getElementById('price');
-  var timein = document.getElementById('timein');
-  var type = document.getElementById('type');
-  var timeout = document.getElementById('timeout');
   var Price = {
     FLAT: 1000,
     HOUSE: 5000,
     PALACE: 10000
   };
+  var title = document.getElementById('title');
+  var price = document.getElementById('price');
+  var timein = document.getElementById('timein');
+  var type = document.getElementById('type');
+  var timeout = document.getElementById('timeout');
+  // var value = evt.target.value;
 
   //  Валидация полей формы
   title.addEventListener('invalid', function () {
@@ -68,5 +69,27 @@
       timein.options[2].selected = true;
     }
   });
+
+  // if (value === 1) {
+  //   roomsSelect.childNodeElement[0].selected = true;
+  //   roomsSelect.childNodeElement[1].selected = false;
+  //   roomsSelect.childNodeElement[2].selected = false;
+  //   roomsSelect.childNodeElement[3].selected = false;
+  // } else if (value === 2) {
+  //   roomsSelect.childNodeElement[0].selected = true;
+  //   roomsSelect.childNodeElement[1].selected = true;
+  //   roomsSelect.childNodeElement[2].selected = false;
+  //   roomsSelect.childNodeElement[3].selected = false;
+  // } else if (value === 2) {
+  //   roomsSelect.childNodeElement[0].selected = true;
+  //   roomsSelect.childNodeElement[1].selected = true;
+  //   roomsSelect.childNodeElement[2].selected = true;
+  //   roomsSelect.childNodeElement[3].selected = false;
+  // } else if (value === 100) {
+  //   roomsSelect.childNodeElement[0].selected = false;
+  //   roomsSelect.childNodeElement[1].selected = false;
+  //   roomsSelect.childNodeElement[2].selected = false;
+  //   roomsSelect.childNodeElement[3].selected = true;
+  // }
 
 })();

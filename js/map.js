@@ -1,23 +1,20 @@
 'use strict';
 
 (function () {
-  var PINS_LIMIT = 5;
-
-  var mapPins = document.querySelector('.map__pins');
-  var pin = document.getElementById('pin');
-  var error = document.getElementById('error');
-  var main = document.getElementsByTagName('main');
-  var mapPinMain = document.querySelector('.map__pin--main');
-  var template = document.querySelector('template');
-  var mapCard = template.content.querySelector('.map__card');
-  var popupPhoto = template.content.querySelector('.popup__photo');
-
   var AccomodationType = {
     FLAT: 'Квартира',
     BUNGALO: 'Бунгало',
     HOUSE: 'Дом',
     PALACE: 'Дворец'
   };
+
+  var mapPins = document.querySelector('.map__pins');
+  var pin = document.getElementById('pin');
+  var error = document.getElementById('error');
+  var main = document.getElementsByTagName('main');
+  var template = document.querySelector('template');
+  var mapCard = template.content.querySelector('.map__card');
+  var popupPhoto = template.content.querySelector('.popup__photo');
 
   // Создает метку на карте
   function renderPoint(ad) {
@@ -43,18 +40,6 @@
     }
 
     mapPins.appendChild(fragment);
-  }
-
-  // Отрисовывает ошибку сервера
-  function renderError() {
-    var errorConnection = error.content.cloneNode(true);
-
-    var fragment = document.createDocumentFragment();
-    fragment.appendChild(errorConnection);
-
-    for (var i = 0; i < main.length; i++) {
-      main[i].appendChild(fragment);
-    }
   }
 
   // Удаляет пины
@@ -113,12 +98,6 @@
     return mapCard;
   }
 
-  function activateMap(data) {
-    window.data = data;
-    renderPoints(data.slice(0, PINS_LIMIT));
-    addPinListeners();
-  }
-
   function addPinListeners() {
     var mapPinItems = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
@@ -127,10 +106,6 @@
       button.addEventListener('click', clickPoint);
     }
   }
-
-  mapPinMain.addEventListener('click', function () {
-    window.load(activateMap, renderError);
-  });
 
   function getCurrentOffer() {
     var ad = {};
@@ -161,7 +136,7 @@
     evt.target.parentNode.remove();
   }
 
-  var onAdEscDown = function (evt) {
+  function  onAdEscDown(evt) {
     window.util.onEscDown(evt, removePopup);
   };
 
