@@ -30,7 +30,7 @@
       return coordsObj.MAX;
     }
     return coordsNum;
-  };
+  }
 
   function activateMap(data) {
     window.data = data;
@@ -53,14 +53,14 @@
     var left = mapPinMain.offsetLeft + Math.round(weight / 2);
     var top = mapPinMain.offsetTop + Math.round(heigth);
     address.value = left + ', ' + top;
-  };
+  }
 
   function mainPinMousedownHandler(evt) {
     window.load(activateMap, renderError);
     // mapPinMain.removeEventListener('mousedown', mainPinMousedownHandler);
     if (!window.data) {
       window.load();
-    };
+    }
 
     // window.data = null;
 
@@ -89,16 +89,16 @@
       mapPinMain.style.top = isOnMap(mapPinMain.offsetTop - shift.y, Coords.Y) + 'px';
       mapPinMain.style.left = isOnMap(mapPinMain.offsetLeft - shift.x, Coords.X) + 'px';
       setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
-    };
+    }
     function mouseUpHandler() {
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
       setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
-    };
+    }
 
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mouseup', mouseUpHandler);
-  };
+  }
 
   mapPinMain.addEventListener('mousedown', mainPinMousedownHandler);
 })();
