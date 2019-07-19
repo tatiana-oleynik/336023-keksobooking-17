@@ -11,7 +11,8 @@
   var timein = document.getElementById('timein');
   var type = document.getElementById('type');
   var timeout = document.getElementById('timeout');
-  // var value = evt.target.value;
+  var roomNumber = document.getElementById('room_number');
+  var capacity = document.getElementById('capacity');
 
   //  Валидация полей формы
   title.addEventListener('invalid', function () {
@@ -70,26 +71,27 @@
     }
   });
 
-  // if (value === 1) {
-  //   roomsSelect.childNodeElement[0].selected = true;
-  //   roomsSelect.childNodeElement[1].selected = false;
-  //   roomsSelect.childNodeElement[2].selected = false;
-  //   roomsSelect.childNodeElement[3].selected = false;
-  // } else if (value === 2) {
-  //   roomsSelect.childNodeElement[0].selected = true;
-  //   roomsSelect.childNodeElement[1].selected = true;
-  //   roomsSelect.childNodeElement[2].selected = false;
-  //   roomsSelect.childNodeElement[3].selected = false;
-  // } else if (value === 2) {
-  //   roomsSelect.childNodeElement[0].selected = true;
-  //   roomsSelect.childNodeElement[1].selected = true;
-  //   roomsSelect.childNodeElement[2].selected = true;
-  //   roomsSelect.childNodeElement[3].selected = false;
-  // } else if (value === 100) {
-  //   roomsSelect.childNodeElement[0].selected = false;
-  //   roomsSelect.childNodeElement[1].selected = false;
-  //   roomsSelect.childNodeElement[2].selected = false;
-  //   roomsSelect.childNodeElement[3].selected = true;
-  // }
-
+  roomNumber.addEventListener('change', function (evt) {
+    if (evt.target.value === '1') {
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = true;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
+    } else if (evt.target.value === '2') {
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = false;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
+    } else if (evt.target.value === '3') {
+      capacity.options[0].disabled = false;
+      capacity.options[1].disabled = false;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
+    } else if (evt.target.value === '100') {
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = true;
+      capacity.options[2].disabled = true;
+      capacity.options[3].disabled = false;
+    }
+  });
 })();

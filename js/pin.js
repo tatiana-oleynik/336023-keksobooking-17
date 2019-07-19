@@ -56,13 +56,9 @@
   }
 
   function mainPinMousedownHandler(evt) {
-    window.load(activateMap, renderError);
-    // mapPinMain.removeEventListener('mousedown', mainPinMousedownHandler);
     if (!window.data) {
-      window.load();
+      window.load(activateMap, renderError);
     }
-
-    // window.data = null;
 
     window.util.hideElement('map--faded', map);
     window.util.hideElement('ad-form--disabled', adForm);
