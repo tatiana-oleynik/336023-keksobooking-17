@@ -10,8 +10,6 @@
 
   var mapPins = document.querySelector('.map__pins');
   var pin = document.getElementById('pin');
-  var error = document.getElementById('error');
-  var main = document.getElementsByTagName('main');
   var template = document.querySelector('template');
   var mapCard = template.content.querySelector('.map__card');
   var popupPhoto = template.content.querySelector('.popup__photo');
@@ -136,9 +134,9 @@
     evt.target.parentNode.remove();
   }
 
-  function  onAdEscDown(evt) {
+  function onAdEscDown(evt) {
     window.util.onEscDown(evt, removePopup);
-  };
+  }
 
   window.map = {
     renderPoints: renderPoints,

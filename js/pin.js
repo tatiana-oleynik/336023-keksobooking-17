@@ -1,5 +1,5 @@
 'use strict';
-  //  Функция расчета координат главной метки
+//  Функция расчета координат главной метки
 (function () {
   var MAP_PIN_HEIGHT = 84;
   var MAP_PIN_WIDTH = 64;
@@ -19,6 +19,8 @@
   var map = document.querySelector('.map');
   var adForm = document.querySelector('.ad-form');
   var address = document.getElementById('address');
+  var error = document.getElementById('error');
+  var main = document.getElementsByTagName('main');
 
   function isOnMap(coordsNum, coordsObj) {
     if (coordsNum < coordsObj.MIN) {
