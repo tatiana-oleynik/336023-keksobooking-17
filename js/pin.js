@@ -1,81 +1,103 @@
 'use strict';
-
+//  Функция расчета координат главной метки
 (function () {
   var MAP_PIN_HEIGHT = 84;
   var MAP_PIN_WIDTH = 64;
-
+  var PINS_LIMIT = 5;
+  var Coords = {
+    X: {
+      MIN: 0,
+      MAX: 1135
+    },
+    Y: {
+      MIN: 46,
+      MAX: 546
+    }
+  };
+  var activeState = false;
   var mapPinMain = document.querySelector('.map__pin--main');
   var map = document.querySelector('.map');
   var adForm = document.querySelector('.ad-form');
   var address = document.getElementById('address');
+  var error = document.getElementById('error');
+  var main = document.getElementsByTagName('main');
 
-  //  Функция расчета координат главной метки
-  (function () {
+  function isOnMap(coordsNum, coordsObj) {
+    if (coordsNum < coordsObj.MIN) {
+      return coordsObj.MIN;
+    }
+    if (coordsNum > coordsObj.MAX) {
+      return coordsObj.MAX;
+    }
+    return coordsNum;
+  }
 
-    var X_COORDS = {
-      min: 0,
-      max: 1135
-    };
+  function activateMap(data) {
+    window.data = data;
+    window.map.renderPoints(data.slice(0, PINS_LIMIT));
+    window.map.addPinListeners();
+  }
 
-    var Y_COORDS = {
-      min: 46,
-      max: 546
-    };
+  function renderError() {
+    var errorConnection = error.content.cloneNode(true);
 
-    var isOnMap = function (coordsNum, coordsObj) {
-      if (coordsNum < coordsObj.min) {
-        return coordsObj.min;
-      }
-      if (coordsNum > coordsObj.max) {
-        return coordsObj.max;
-      }
-      return coordsNum;
-    };
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(errorConnection);
 
-    var setAddress = function (weight, heigth) {
-      var left = mapPinMain.offsetLeft + Math.round(weight / 2);
-      var top = mapPinMain.offsetTop + Math.round(heigth);
-      address.value = left + ', ' + top;
-    };
+    for (var i = 0; i < main.length; i++) {
+      main[i].appendChild(fragment);
+    }
+  }
 
-    var mainPinMousedownHandler = function (evt) {
+  function setAddress(weight, heigth) {
+    var left = mapPinMain.offsetLeft + Math.round(weight / 2);
+    var top = mapPinMain.offsetTop + Math.round(heigth);
+    address.value = left + ', ' + top;
+  }
+
+  function mainPinMousedownHandler(evt) {
+    if (!window.data) {
+      window.load(activateMap, renderError);
+    }
+
+    if (!activeState) {
       window.util.hideElement('map--faded', map);
       window.util.hideElement('ad-form--disabled', adForm);
       window.activateForm();
+      activeState = true;
+    }
 
-      var startCoords = {
-        x: evt.clientX,
-        y: evt.clientY
-      };
-
-      var mouseMoveHandler = function (moveEvt) {
-        moveEvt.preventDefault();
-
-        var shift = {
-          x: startCoords.x - moveEvt.clientX,
-          y: startCoords.y - moveEvt.clientY
-        };
-
-        startCoords = {
-          x: moveEvt.clientX,
-          y: moveEvt.clientY
-        };
-
-        mapPinMain.style.top = isOnMap(mapPinMain.offsetTop - shift.y, Y_COORDS) + 'px';
-        mapPinMain.style.left = isOnMap(mapPinMain.offsetLeft - shift.x, X_COORDS) + 'px';
-        setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
-
-      };
-      var mouseUpHandler = function () {
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
-        setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
-      };
-
-      document.addEventListener('mousemove', mouseMoveHandler);
-      document.addEventListener('mouseup', mouseUpHandler);
+    var startCoords = {
+      x: evt.clientX,
+      y: evt.clientY
     };
 
-    mapPinMain.addEventListener('mousedown', mainPinMousedownHandler);
-  })();
+    function mouseMoveHandler(moveEvt) {
+      moveEvt.preventDefault();
+
+      var shift = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY
+      };
+
+      startCoords = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
+
+      mapPinMain.style.top = isOnMap(mapPinMain.offsetTop - shift.y, Coords.Y) + 'px';
+      mapPinMain.style.left = isOnMap(mapPinMain.offsetLeft - shift.x, Coords.X) + 'px';
+      setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
+    }
+    function mouseUpHandler() {
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
+      setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
+    }
+
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
+  }
+
+  mapPinMain.addEventListener('mousedown', mainPinMousedownHandler);
 })();

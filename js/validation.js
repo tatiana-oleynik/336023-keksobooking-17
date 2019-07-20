@@ -1,16 +1,18 @@
 'use strict';
 
 (function () {
-  var title = document.getElementById('title');
-  var price = document.getElementById('price');
-  var timein = document.getElementById('timein');
-  var type = document.getElementById('type');
-  var timeout = document.getElementById('timeout');
   var Price = {
     FLAT: 1000,
     HOUSE: 5000,
     PALACE: 10000
   };
+  var title = document.getElementById('title');
+  var price = document.getElementById('price');
+  var timein = document.getElementById('timein');
+  var type = document.getElementById('type');
+  var timeout = document.getElementById('timeout');
+  var roomNumber = document.getElementById('room_number');
+  var capacity = document.getElementById('capacity');
 
   //  Валидация полей формы
   title.addEventListener('invalid', function () {
@@ -69,4 +71,27 @@
     }
   });
 
+  roomNumber.addEventListener('change', function (evt) {
+    if (evt.target.value === '1') {
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = true;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
+    } else if (evt.target.value === '2') {
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = false;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
+    } else if (evt.target.value === '3') {
+      capacity.options[0].disabled = false;
+      capacity.options[1].disabled = false;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
+    } else if (evt.target.value === '100') {
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = true;
+      capacity.options[2].disabled = true;
+      capacity.options[3].disabled = false;
+    }
+  });
 })();
