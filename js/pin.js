@@ -14,7 +14,7 @@
       MAX: 546
     }
   };
-
+  var activeState = false;
   var mapPinMain = document.querySelector('.map__pin--main');
   var map = document.querySelector('.map');
   var adForm = document.querySelector('.ad-form');
@@ -60,9 +60,12 @@
       window.load(activateMap, renderError);
     }
 
-    window.util.hideElement('map--faded', map);
-    window.util.hideElement('ad-form--disabled', adForm);
-    window.activateForm();
+    if (!activeState) {
+      window.util.hideElement('map--faded', map);
+      window.util.hideElement('ad-form--disabled', adForm);
+      window.activateForm();
+      activeState = true;
+    }
 
     var startCoords = {
       x: evt.clientX,
