@@ -39,7 +39,6 @@
 
   function renderError() {
     var errorConnection = error.content.cloneNode(true);
-    var errorButton = document.querySelector('.error__button');
 
     var fragment = document.createDocumentFragment();
     fragment.appendChild(errorConnection);
@@ -50,12 +49,15 @@
 
     document.addEventListener('keydown', closeErrorEscDown);
     document.addEventListener('click', closeErrorMessage);
+    var errorButton = document.querySelector('.error__button');
     errorButton.addEventListener('click', closeErrorMessage);
   }
 
   function closeErrorMessage() {
     var errorMessage = document.querySelector('.error');
-    errorMessage.remove();
+    if (errorMessage) {
+      errorMessage.remove();
+    }
   }
 
   function closeErrorEscDown(evt) {

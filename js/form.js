@@ -56,8 +56,6 @@
   function onSubmitSuccess() {
     showSuccess();
     disableForm();
-    // window.map.deactivate();
-    // window.filter.deactivate();
   }
 
   function onAdFormSubmit(evt) {
