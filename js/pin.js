@@ -53,12 +53,12 @@
     errorButton.addEventListener('click', closeErrorMessage);
   }
 
-  function closeErrorMessage () {
+  function closeErrorMessage() {
     var errorMessage = document.querySelector('.error');
     errorMessage.remove();
   }
 
-  function closeErrorEscDown (evt) {
+  function closeErrorEscDown(evt) {
     window.util.onEscDown(evt, closeErrorMessage);
   }
 

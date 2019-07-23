@@ -22,15 +22,15 @@
 
     xhr.open(method, url);
     return xhr;
-  };
+  }
 
   function load(onSuccess, onError) {
     createXhr('GET', ServerUrl.LOAD, onSuccess, onError).send();
-  };
+  }
 
   function save(onSuccess, onError, data) {
     createXhr('POST', ServerUrl.UPLOAD, onSuccess, onError).send(data);
-  };
+  }
 
   window.backend = {
     load: load,

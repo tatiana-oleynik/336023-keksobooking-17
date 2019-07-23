@@ -42,14 +42,14 @@
 
     document.addEventListener('keydown', closeSuccessEscDown);
     document.addEventListener('click', closeSuccess);
-  };
+  }
 
-  function closeSuccess () {
+  function closeSuccess() {
     var successMessage = document.querySelector('.success');
     successMessage.remove();
   }
 
-  function closeSuccessEscDown (evt) {
+  function closeSuccessEscDown(evt) {
     window.util.onEscDown(evt, closeSuccess);
   }
 
@@ -58,13 +58,13 @@
     disableForm();
     // window.map.deactivate();
     // window.filter.deactivate();
-  };
+  }
 
   function onAdFormSubmit(evt) {
     evt.preventDefault();
     var formData = new FormData(adForm);
     window.backend.save(onSubmitSuccess, window.pin.renderError, formData);
-  };
+  }
 
   adForm.addEventListener('submit', onAdFormSubmit);
 
