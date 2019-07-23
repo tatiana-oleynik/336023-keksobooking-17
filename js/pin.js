@@ -20,7 +20,6 @@
   var adForm = document.querySelector('.ad-form');
   var address = document.getElementById('address');
   var error = document.getElementById('error');
-  var main = document.getElementsByTagName('main');
 
   function isOnMap(coordsNum, coordsObj) {
     if (coordsNum < coordsObj.MIN) {
@@ -40,13 +39,27 @@
 
   function renderError() {
     var errorConnection = error.content.cloneNode(true);
+    var errorButton = document.querySelector('.error__button');
 
     var fragment = document.createDocumentFragment();
     fragment.appendChild(errorConnection);
 
-    for (var i = 0; i < main.length; i++) {
-      main[i].appendChild(fragment);
+    for (var i = 0; i < window.constants.MAIN.length; i++) {
+      window.constants.MAIN[i].appendChild(fragment);
     }
+
+    document.addEventListener('keydown', closeErrorEscDown);
+    document.addEventListener('click', closeErrorMessage);
+    errorButton.addEventListener('click', closeErrorMessage);
+  }
+
+  function closeErrorMessage () {
+    var errorMessage = document.querySelector('.error');
+    errorMessage.remove();
+  }
+
+  function closeErrorEscDown (evt) {
+    window.util.onEscDown(evt, closeErrorMessage);
   }
 
   function setAddress(weight, heigth) {
@@ -57,7 +70,7 @@
 
   function mainPinMousedownHandler(evt) {
     if (!window.data) {
-      window.load(activateMap, renderError);
+      window.backend.load(activateMap, renderError);
     }
 
     if (!activeState) {
@@ -100,4 +113,9 @@
   }
 
   mapPinMain.addEventListener('mousedown', mainPinMousedownHandler);
+
+  window.pin = {
+    activateMap: activateMap,
+    renderError: renderError
+  };
 })();
