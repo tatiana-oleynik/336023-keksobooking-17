@@ -29,8 +29,6 @@
     }
   }
 
-  disableForm();
-
   function showSuccess() {
     var successMessage = success.content.cloneNode(true);
     var fragment = document.createDocumentFragment();
@@ -46,7 +44,11 @@
 
   function closeSuccess() {
     var successMessage = document.querySelector('.success');
-    successMessage.remove();
+    console.log(successMessage);
+    if (successMessage) {
+      successMessage.remove();
+    }
+    // successMessage.remove();
   }
 
   function closeSuccessEscDown(evt) {
@@ -56,15 +58,29 @@
   function onSubmitSuccess() {
     showSuccess();
     disableForm();
+    window.map.deactivateMap();
   }
 
   function onAdFormSubmit(evt) {
     evt.preventDefault();
     var formData = new FormData(adForm);
-    window.backend.save(onSubmitSuccess, window.pin.renderError, formData);
+    window.backend.save(onSubmitSuccess, window.map.renderError, formData);
   }
 
-  adForm.addEventListener('submit', onAdFormSubmit);
+  function setDefaultValues() {
+    window.constants.PRICE.setAttribute('min', 1000);
+    window.constants.PRICE.setAttribute('placeholder', 1000);
+
+    window.constants.CAPACITY.value = 1;
+  }
+
+  function init() {
+    adForm.addEventListener('submit', onAdFormSubmit);
+    disableForm();
+    setDefaultValues();
+  }
+
+  init();
 
   window.activateForm = activateForm;
 })();

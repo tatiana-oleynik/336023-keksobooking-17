@@ -7,12 +7,11 @@
     PALACE: 10000
   };
   var title = document.getElementById('title');
-  var price = document.getElementById('price');
   var timein = document.getElementById('timein');
   var type = document.getElementById('type');
   var timeout = document.getElementById('timeout');
   var roomNumber = document.getElementById('room_number');
-  var capacity = document.getElementById('capacity');
+  // var capacity = document.getElementById('capacity');
 
   //  Валидация полей формы
   title.addEventListener('invalid', function () {
@@ -25,23 +24,27 @@
     }
   });
 
-  price.addEventListener('invalid', function () {
-    if (price.validity.valueMissing) {
-      price.setCustomValidity('Обязательное поле');
+  window.constants.PRICE.addEventListener('invalid', function () {
+    if (window.constants.PRICE.validity.valueMissing) {
+      window.constants.PRICE.setCustomValidity('Обязательное поле');
     } else {
-      price.setCustomValidity('');
+      window.constants.PRICE.setCustomValidity('');
     }
   });
 
   type.addEventListener('change', function (evt) {
     if (evt.target.value === 'bungalo') {
-      price.setAttribute('placeholder', 0);
+      window.constants.PRICE.setAttribute('placeholder', 0);
+      window.constants.PRICE.setAttribute('min', 0);
     } else if (evt.target.value === 'flat') {
-      price.setAttribute('placeholder', Price.FLAT);
+      window.constants.PRICE.setAttribute('placeholder', Price.FLAT);
+      window.constants.PRICE.setAttribute('min', Price.FLAT);
     } else if (evt.target.value === 'house') {
-      price.setAttribute('placeholder', Price.HOUSE);
+      window.constants.PRICE.setAttribute('placeholder', Price.HOUSE);
+      window.constants.PRICE.setAttribute('min', Price.HOUSE);
     } else if (evt.target.value === 'palace') {
-      price.setAttribute('placeholder', Price.PALACE);
+      window.constants.PRICE.setAttribute('placeholder', Price.PALACE);
+      window.constants.PRICE.setAttribute('min', Price.PALACE);
     }
   });
 
@@ -73,25 +76,25 @@
 
   roomNumber.addEventListener('change', function (evt) {
     if (evt.target.value === '1') {
-      capacity.options[0].disabled = true;
-      capacity.options[1].disabled = true;
-      capacity.options[2].disabled = false;
-      capacity.options[3].disabled = true;
+      window.constants.CAPACITY.options[0].disabled = true;
+      window.constants.CAPACITY.options[1].disabled = true;
+      window.constants.CAPACITY.options[2].disabled = false;
+      window.constants.CAPACITY.options[3].disabled = true;
     } else if (evt.target.value === '2') {
-      capacity.options[0].disabled = true;
-      capacity.options[1].disabled = false;
-      capacity.options[2].disabled = false;
-      capacity.options[3].disabled = true;
+      window.constants.CAPACITY.options[0].disabled = true;
+      window.constants.CAPACITY.options[1].disabled = false;
+      window.constants.CAPACITY.options[2].disabled = false;
+      window.constants.CAPACITY.options[3].disabled = true;
     } else if (evt.target.value === '3') {
-      capacity.options[0].disabled = false;
-      capacity.options[1].disabled = false;
-      capacity.options[2].disabled = false;
-      capacity.options[3].disabled = true;
+      window.constants.CAPACITY.options[0].disabled = false;
+      window.constants.CAPACITY.options[1].disabled = false;
+      window.constants.CAPACITY.options[2].disabled = false;
+      window.constants.CAPACITY.options[3].disabled = true;
     } else if (evt.target.value === '100') {
-      capacity.options[0].disabled = true;
-      capacity.options[1].disabled = true;
-      capacity.options[2].disabled = true;
-      capacity.options[3].disabled = false;
+      window.constants.CAPACITY.options[0].disabled = true;
+      window.constants.CAPACITY.options[1].disabled = true;
+      window.constants.CAPACITY.options[2].disabled = true;
+      window.constants.CAPACITY.options[3].disabled = false;
     }
   });
 })();

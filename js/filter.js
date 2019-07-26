@@ -5,15 +5,15 @@
 
   // Фильтр 'Тип жилья'
   housingType.addEventListener('change', function (event) {
-    window.map.removePins();
-    window.map.removePopup();
+    window.pin.removePins();
+    window.pin.removePopup();
 
     var elementValue = event.target.value;
     var filterData = window.data.filter(function (it) {
       return it.offer.type === elementValue;
     });
 
-    window.map.renderPoints(filterData);
-    window.map.addPinListeners(filterData);
+    window.pin.renderPoints(filterData);
+    window.pin.addPinListeners(filterData);
   });
 })();

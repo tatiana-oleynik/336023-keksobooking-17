@@ -36,39 +36,4 @@
     load: load,
     save: save
   };
-
-  // window.load = function (onSuccess, onError) {
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.responseType = 'json';
-  //
-  //   xhr.open('GET', ServerUrl.LOAD);
-  //   xhr.addEventListener('load', function () {
-  //     if (xhr.status === SUCCESS) {
-  //       onSuccess(xhr.response);
-  //     } else {
-  //       onError(ERROR_SERVER);
-  //     }
-  //   });
-  //   xhr.send();
-  //
-  //   window.onSuccess = onSuccess;
-  // };
-
-  // var adFormSubmit = document.querySelector('.ad-form__submit');
-  // adFormSubmit.addEventListener('submit', function () {
-  //   event.preventDefault();
-  //
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.responseType = 'json';
-  //
-  //   xhr.open('POST', ServerUrl.UPLOAD);
-  //   xhr.addEventListener('load', function () {
-  //     if (xhr.status === SUCCESS) {
-  //       onSuccess(xhr.response);
-  //     } else {
-  //       onError(ERROR_SERVER);
-  //     }
-  //   });
-  //   xhr.send();
-  // })
 })();

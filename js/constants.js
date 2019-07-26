@@ -2,6 +2,8 @@
 
 (function () {
   window.constants = {
-    MAIN: document.getElementsByTagName('main')
+    MAIN: document.getElementsByTagName('main'),
+    PRICE: document.getElementById('price'),
+    CAPACITY: document.getElementById('capacity')
   };
 })();
