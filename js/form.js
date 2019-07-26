@@ -44,7 +44,6 @@
 
   function closeSuccess() {
     var successMessage = document.querySelector('.success');
-    console.log(successMessage);
     if (successMessage) {
       successMessage.remove();
     }

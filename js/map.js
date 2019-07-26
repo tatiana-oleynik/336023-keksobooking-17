@@ -17,8 +17,8 @@
     }
   };
   var PinSize = {
-   WIDTH: 65,
-   HEIGHT: 65
+    WIDTH: 65,
+    HEIGHT: 65
   };
   var activeState = false;
   var mapPinMain = document.querySelector('.map__pin--main');
