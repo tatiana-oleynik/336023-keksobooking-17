@@ -4,12 +4,12 @@
   var MAP_PIN_HEIGHT = 84;
   var MAP_PIN_WIDTH = 64;
   var PINS_LIMIT = 5;
-  var DEFAULT_MAIN_PIN_X = 570;
-  var DEFAULT_MAIN_PIN_Y = 375;
+  var DEFAULT_MAIN_PIN_X = 602;
+  var DEFAULT_MAIN_PIN_Y = 407;
   var Coords = {
     X: {
       MIN: 0,
-      MAX: 1135
+      MAX: 1100
     },
     Y: {
       MIN: 46,
@@ -26,6 +26,7 @@
   var adForm = document.querySelector('.ad-form');
   var address = document.getElementById('address');
   var error = document.getElementById('error');
+  var adFormReset = document.querySelector('.ad-form__reset');
 
   function isOnMap(coordsNum, coordsObj) {
     if (coordsNum < coordsObj.MIN) {
@@ -45,11 +46,14 @@
 
   function deactivateMap() {
     map.classList.add('map--faded');
+    adForm.classList.add('ad-form--disabled');
     window.pin.removePins();
     window.pin.removePopup();
     mapPinMain.style.top = DEFAULT_MAIN_PIN_Y - PinSize.HEIGHT / 2 + 'px';
     mapPinMain.style.left = DEFAULT_MAIN_PIN_X - PinSize.WIDTH / 2 + 'px';
     adForm.reset();
+    activeState = false;
+    window.data = null;
   }
 
   function renderError() {
@@ -130,6 +134,7 @@
   }
 
   mapPinMain.addEventListener('mousedown', mainPinMousedownHandler);
+  adFormReset.addEventListener('click', deactivateMap);
 
   window.map = {
     activateMap: activateMap,

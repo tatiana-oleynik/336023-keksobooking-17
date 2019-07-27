@@ -69,8 +69,6 @@
   function setDefaultValues() {
     window.constants.PRICE.setAttribute('min', 1000);
     window.constants.PRICE.setAttribute('placeholder', 1000);
-
-    window.constants.CAPACITY.value = 1;
   }
 
   function init() {

@@ -11,7 +11,6 @@
   var type = document.getElementById('type');
   var timeout = document.getElementById('timeout');
   var roomNumber = document.getElementById('room_number');
-  // var capacity = document.getElementById('capacity');
 
   //  Валидация полей формы
   title.addEventListener('invalid', function () {
