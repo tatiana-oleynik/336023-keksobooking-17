@@ -17,11 +17,9 @@
     window.pin.renderPoints(filterData);
     window.pin.addPinListeners(filterData);
   });
-  console.log(housingType);
-  console.log(housingPrice);
+
   // Фильтр 'Стоимость жилья'
   housingPrice.addEventListener('change', function (event) {
-    console.log(housingPrice);
     window.pin.removePins();
     window.pin.removePopup();
 
