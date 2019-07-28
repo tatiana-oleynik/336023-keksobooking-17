@@ -1,11 +1,6 @@
 'use strict';
 
 (function () {
-  var Price = {
-    FLAT: 1000,
-    HOUSE: 5000,
-    PALACE: 10000
-  };
   var title = document.getElementById('title');
   var timein = document.getElementById('timein');
   var type = document.getElementById('type');
@@ -23,27 +18,27 @@
     }
   });
 
-  window.constants.PRICE.addEventListener('invalid', function () {
-    if (window.constants.PRICE.validity.valueMissing) {
-      window.constants.PRICE.setCustomValidity('Обязательное поле');
+  window.constants.selectors.PRICE.addEventListener('invalid', function () {
+    if (window.constants.selectors.PRICE.validity.valueMissing) {
+      window.constants.selectors.PRICE.setCustomValidity('Обязательное поле');
     } else {
-      window.constants.PRICE.setCustomValidity('');
+      window.constants.selectors.PRICE.setCustomValidity('');
     }
   });
 
   type.addEventListener('change', function (evt) {
     if (evt.target.value === 'bungalo') {
-      window.constants.PRICE.setAttribute('placeholder', 0);
-      window.constants.PRICE.setAttribute('min', 0);
+      window.constants.selectors.PRICE.setAttribute('placeholder', 0);
+      window.constants.selectors.PRICE.setAttribute('min', 0);
     } else if (evt.target.value === 'flat') {
-      window.constants.PRICE.setAttribute('placeholder', Price.FLAT);
-      window.constants.PRICE.setAttribute('min', Price.FLAT);
+      window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.FLAT);
+      window.constants.selectors.PRICE.setAttribute('min', window.constants.price.FLAT);
     } else if (evt.target.value === 'house') {
-      window.constants.PRICE.setAttribute('placeholder', Price.HOUSE);
-      window.constants.PRICE.setAttribute('min', Price.HOUSE);
+      window.constants.selectors.PRICE.setAttribute('placeholder',window.constants.price.HOUSE);
+      window.constants.selectors.PRICE.setAttribute('min', window.constants.price.HOUSE);
     } else if (evt.target.value === 'palace') {
-      window.constants.PRICE.setAttribute('placeholder', Price.PALACE);
-      window.constants.PRICE.setAttribute('min', Price.PALACE);
+      window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.PALACE);
+      window.constants.selectors.PRICE.setAttribute('min', window.constants.price.PALACE);
     }
   });
 
@@ -75,25 +70,25 @@
 
   roomNumber.addEventListener('change', function (evt) {
     if (evt.target.value === '1') {
-      window.constants.CAPACITY.options[0].disabled = true;
-      window.constants.CAPACITY.options[1].disabled = true;
-      window.constants.CAPACITY.options[2].disabled = false;
-      window.constants.CAPACITY.options[3].disabled = true;
+      window.constants.selectors.CAPACITY.options[0].disabled = true;
+      window.constants.selectors.CAPACITY.options[1].disabled = true;
+      window.constants.selectors.CAPACITY.options[2].disabled = false;
+      window.constants.selectors.CAPACITY.options[3].disabled = true;
     } else if (evt.target.value === '2') {
-      window.constants.CAPACITY.options[0].disabled = true;
-      window.constants.CAPACITY.options[1].disabled = false;
-      window.constants.CAPACITY.options[2].disabled = false;
-      window.constants.CAPACITY.options[3].disabled = true;
+      window.constants.selectors.CAPACITY.options[0].disabled = true;
+      window.constants.selectors.CAPACITY.options[1].disabled = false;
+      window.constants.selectors.CAPACITY.options[2].disabled = false;
+      window.constants.selectors.CAPACITY.options[3].disabled = true;
     } else if (evt.target.value === '3') {
-      window.constants.CAPACITY.options[0].disabled = false;
-      window.constants.CAPACITY.options[1].disabled = false;
-      window.constants.CAPACITY.options[2].disabled = false;
-      window.constants.CAPACITY.options[3].disabled = true;
+      window.constants.selectors.CAPACITY.options[0].disabled = false;
+      window.constants.selectors.CAPACITY.options[1].disabled = false;
+      window.constants.selectors.CAPACITY.options[2].disabled = false;
+      window.constants.selectors.CAPACITY.options[3].disabled = true;
     } else if (evt.target.value === '100') {
-      window.constants.CAPACITY.options[0].disabled = true;
-      window.constants.CAPACITY.options[1].disabled = true;
-      window.constants.CAPACITY.options[2].disabled = true;
-      window.constants.CAPACITY.options[3].disabled = false;
+      window.constants.selectors.CAPACITY.options[0].disabled = true;
+      window.constants.selectors.CAPACITY.options[1].disabled = true;
+      window.constants.selectors.CAPACITY.options[2].disabled = true;
+      window.constants.selectors.CAPACITY.options[3].disabled = false;
     }
   });
 })();

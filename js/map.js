@@ -62,8 +62,8 @@
     var fragment = document.createDocumentFragment();
     fragment.appendChild(errorConnection);
 
-    for (var i = 0; i < window.constants.MAIN.length; i++) {
-      window.constants.MAIN[i].appendChild(fragment);
+    for (var i = 0; i < window.constants.selectors.MAIN.length; i++) {
+      window.constants.selectors.MAIN[i].appendChild(fragment);
     }
 
     document.addEventListener('keydown', closeErrorEscDown);

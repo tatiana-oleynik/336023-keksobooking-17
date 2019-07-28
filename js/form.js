@@ -34,8 +34,8 @@
     var fragment = document.createDocumentFragment();
     fragment.appendChild(successMessage);
 
-    for (var i = 0; i < window.constants.MAIN.length; i++) {
-      window.constants.MAIN[i].appendChild(fragment);
+    for (var i = 0; i < window.constants.selectors.MAIN.length; i++) {
+      window.constants.selectors.MAIN[i].appendChild(fragment);
     }
 
     document.addEventListener('keydown', closeSuccessEscDown);
@@ -47,7 +47,6 @@
     if (successMessage) {
       successMessage.remove();
     }
-    // successMessage.remove();
   }
 
   function closeSuccessEscDown(evt) {
@@ -67,8 +66,12 @@
   }
 
   function setDefaultValues() {
-    window.constants.PRICE.setAttribute('min', 1000);
-    window.constants.PRICE.setAttribute('placeholder', 1000);
+    window.constants.selectors.PRICE.setAttribute('min', window.constants.price.FLAT);
+    window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.FLAT);
+
+    window.constants.selectors.CAPACITY.options[0].disabled = true;
+    window.constants.selectors.CAPACITY.options[1].disabled = true;
+    window.constants.selectors.CAPACITY.options[3].disabled = true;
   }
 
   function init() {
