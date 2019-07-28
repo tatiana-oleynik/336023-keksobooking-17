@@ -23,21 +23,21 @@
 
   // Фильтр 'Стоимость жилья'
   housingPrice.addEventListener('change', function (event) {
-      window.pin.removePins();
-      window.pin.removePopup();
+    window.pin.removePins();
+    window.pin.removePopup();
 
     var elementValue = event.target.value;
     var filterData = window.data.filter(function (it) {
       if (elementValue === 'any') {
         return it.offer.price > 0;
-        window.pin.renderPoints(data.slice(0, 5));
+        window.pin.renderPoints(window.data.slice(0, 5));
       } else if (elementValue === 'middle') {
         return it.offer.price > 10000 && it.offer.price < 50000;
       } else if (elementValue === 'low') {
         return it.offer.price < 10000;
       } else if (elementValue === 'high') {
         return it.offer.price >= 50000;
-      };
+      }
     });
 
     window.pin.renderPoints(filterData);
@@ -46,21 +46,21 @@
 
   // Фильтр 'Количество комнат'
   housingRooms.addEventListener('change', function (event) {
-      window.pin.removePins();
-      window.pin.removePopup();
+    window.pin.removePins();
+    window.pin.removePopup();
 
     var elementValue = event.target.value;
     var filterData = window.data.filter(function (it) {
       if (elementValue === 'any') {
         return it.offer.rooms > 0;
-        window.pin.renderPoints(data.slice(0, 5));
+        window.pin.renderPoints(window.data.slice(0, 5));
       } else if (elementValue === '1') {
         return it.offer.rooms === 1;
       } else if (elementValue === '2') {
         return it.offer.rooms === 2;
       } else if (elementValue === '3') {
         return it.offer.rooms === 3;
-      };
+      }
     });
 
     window.pin.renderPoints(filterData);
@@ -76,20 +76,20 @@
     var filterData = window.data.filter(function (it) {
       if (elementValue === 'any') {
         return it.offer.guests > 0;
-        window.pin.renderPoints(data.slice(0, 5));
+        window.pin.renderPoints(window.data.slice(0, 5));
       } else if (elementValue === '2') {
         return it.offer.guests === 2;
       } else if (elementValue === '1') {
         return it.offer.guests === 1;
       } else if (elementValue === '0') {
         return it.offer.guests === 0;
-      };
+      }
     });
 
     window.pin.renderPoints(filterData);
     window.pin.addPinListeners(filterData);
   });
-  console.log(housingFeatures);
+
   // Фильтр 'Удобства'
   housingFeatures.addEventListener('click', function (event) {
     window.pin.removePins();
@@ -109,7 +109,7 @@
         return it.offer.features.includes('elevator');
       } else if (elementValue === 'conditioner') {
         return it.offer.features.includes('conditioner');
-      };
+      }
     });
 
     window.pin.renderPoints(filterData);
