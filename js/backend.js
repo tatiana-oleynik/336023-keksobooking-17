@@ -3,13 +3,15 @@
 (function () {
   var SUCCESS = 200;
   var ERROR_SERVER = 'Произошла ошибка соединения. Пожалуйста, обновите страницу.';
-  var URL = 'https://js.dump.academy/keksobooking/data';
+  var ServerUrl = {
+    LOAD: 'https://js.dump.academy/keksobooking/data',
+    UPLOAD: 'https://js.dump.academy/keksobooking'
+  };
 
-  window.load = function (onSuccess, onError) {
+  function createXhr(method, url, onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
-    xhr.open('GET', URL);
     xhr.addEventListener('load', function () {
       if (xhr.status === SUCCESS) {
         onSuccess(xhr.response);
@@ -17,8 +19,21 @@
         onError(ERROR_SERVER);
       }
     });
-    xhr.send();
 
-    window.onSuccess = onSuccess;
+    xhr.open(method, url);
+    return xhr;
+  }
+
+  function load(onSuccess, onError) {
+    createXhr('GET', ServerUrl.LOAD, onSuccess, onError).send();
+  }
+
+  function save(onSuccess, onError, data) {
+    createXhr('POST', ServerUrl.UPLOAD, onSuccess, onError).send(data);
+  }
+
+  window.backend = {
+    load: load,
+    save: save
   };
 })();
