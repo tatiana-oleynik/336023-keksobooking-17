@@ -1,11 +1,18 @@
 'use strict';
 
 (function () {
+  var Price = {
+    FLAT: 1000,
+    HOUSE: 5000,
+    PALACE: 10000
+  };
   var title = document.getElementById('title');
+  var price = document.getElementById('price');
   var timein = document.getElementById('timein');
   var type = document.getElementById('type');
   var timeout = document.getElementById('timeout');
   var roomNumber = document.getElementById('room_number');
+  var capacity = document.getElementById('capacity');
 
   //  Валидация полей формы
   title.addEventListener('invalid', function () {
@@ -18,27 +25,23 @@
     }
   });
 
-  window.constants.selectors.PRICE.addEventListener('invalid', function () {
-    if (window.constants.selectors.PRICE.validity.valueMissing) {
-      window.constants.selectors.PRICE.setCustomValidity('Обязательное поле');
+  price.addEventListener('invalid', function () {
+    if (price.validity.valueMissing) {
+      price.setCustomValidity('Обязательное поле');
     } else {
-      window.constants.selectors.PRICE.setCustomValidity('');
+      price.setCustomValidity('');
     }
   });
 
   type.addEventListener('change', function (evt) {
     if (evt.target.value === 'bungalo') {
-      window.constants.selectors.PRICE.setAttribute('placeholder', 0);
-      window.constants.selectors.PRICE.setAttribute('min', 0);
+      price.setAttribute('placeholder', 0);
     } else if (evt.target.value === 'flat') {
-      window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.FLAT);
-      window.constants.selectors.PRICE.setAttribute('min', window.constants.price.FLAT);
+      price.setAttribute('placeholder', Price.FLAT);
     } else if (evt.target.value === 'house') {
-      window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.HOUSE);
-      window.constants.selectors.PRICE.setAttribute('min', window.constants.price.HOUSE);
+      price.setAttribute('placeholder', Price.HOUSE);
     } else if (evt.target.value === 'palace') {
-      window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.PALACE);
-      window.constants.selectors.PRICE.setAttribute('min', window.constants.price.PALACE);
+      price.setAttribute('placeholder', Price.PALACE);
     }
   });
 
@@ -70,25 +73,25 @@
 
   roomNumber.addEventListener('change', function (evt) {
     if (evt.target.value === '1') {
-      window.constants.selectors.CAPACITY.options[0].disabled = true;
-      window.constants.selectors.CAPACITY.options[1].disabled = true;
-      window.constants.selectors.CAPACITY.options[2].disabled = false;
-      window.constants.selectors.CAPACITY.options[3].disabled = true;
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = true;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
     } else if (evt.target.value === '2') {
-      window.constants.selectors.CAPACITY.options[0].disabled = true;
-      window.constants.selectors.CAPACITY.options[1].disabled = false;
-      window.constants.selectors.CAPACITY.options[2].disabled = false;
-      window.constants.selectors.CAPACITY.options[3].disabled = true;
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = false;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
     } else if (evt.target.value === '3') {
-      window.constants.selectors.CAPACITY.options[0].disabled = false;
-      window.constants.selectors.CAPACITY.options[1].disabled = false;
-      window.constants.selectors.CAPACITY.options[2].disabled = false;
-      window.constants.selectors.CAPACITY.options[3].disabled = true;
+      capacity.options[0].disabled = false;
+      capacity.options[1].disabled = false;
+      capacity.options[2].disabled = false;
+      capacity.options[3].disabled = true;
     } else if (evt.target.value === '100') {
-      window.constants.selectors.CAPACITY.options[0].disabled = true;
-      window.constants.selectors.CAPACITY.options[1].disabled = true;
-      window.constants.selectors.CAPACITY.options[2].disabled = true;
-      window.constants.selectors.CAPACITY.options[3].disabled = false;
+      capacity.options[0].disabled = true;
+      capacity.options[1].disabled = true;
+      capacity.options[2].disabled = true;
+      capacity.options[3].disabled = false;
     }
   });
 })();
