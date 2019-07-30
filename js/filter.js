@@ -20,7 +20,7 @@
         return it.offer.type === 'palace';
       } else if (elementValue === 'flat') {
         return it.offer.type === 'flat';
-      }  else if (elementValue === 'house') {
+      } else if (elementValue === 'house') {
         return it.offer.type === 'house';
       } else if (elementValue === 'bungalo') {
         return it.offer.type === 'bungalo';
@@ -125,17 +125,17 @@
       var checkboxes = document.querySelector('.map__checkbox');
       var checkboxesChecked = [];
 
-      for(var i = 0; i < checkboxes.length; i++) {
+      for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
           checkboxesChecked.push(checkboxes[i].value);
         }
       }
 
       filterData = window.data.filter(function (it) {
-        return  it.offer.features.some(function(filter) {
+        return it.offer.features.some(function (filter) {
           return checkboxesChecked.includes(filter);
-        })
-      })
+        });
+      });
     }
 
     window.map.renderPoints(filterData);
