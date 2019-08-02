@@ -1,147 +1,147 @@
 'use strict';
 
 (function () {
-  var AccomodationType = {
-    FLAT: 'Квартира',
-    BUNGALO: 'Бунгало',
-    HOUSE: 'Дом',
-    PALACE: 'Дворец'
+  var MAP_PIN_HEIGHT = 84;
+  var MAP_PIN_WIDTH = 64;
+  var PINS_LIMIT = 5;
+  var DEFAULT_MAIN_PIN_X = 602;
+  var DEFAULT_MAIN_PIN_Y = 407;
+  var Coords = {
+    X: {
+      MIN: 0,
+      MAX: 1100
+    },
+    Y: {
+      MIN: 46,
+      MAX: 546
+    }
   };
+  var PinSize = {
+    WIDTH: 65,
+    HEIGHT: 65
+  };
+  var activeState = false;
+  var mapPinMain = document.querySelector('.map__pin--main');
+  var map = document.querySelector('.map');
+  var adForm = document.querySelector('.ad-form');
+  var address = document.getElementById('address');
+  var error = document.getElementById('error');
+  var adFormReset = document.querySelector('.ad-form__reset');
 
-  var mapPins = document.querySelector('.map__pins');
-  var pin = document.getElementById('pin');
-  var template = document.querySelector('template');
-  var mapCard = template.content.querySelector('.map__card');
-  var popupPhoto = template.content.querySelector('.popup__photo');
-
-  // Создает метку на карте
-  function renderPoint(ad) {
-    var mapPin = pin.content.cloneNode(true);
-    var pinButton = mapPin.querySelector('.map__pin');
-    var pinImg = mapPin.querySelector('img');
-
-    pinButton.style.left = ad.location.x + 'px';
-    pinButton.style.top = ad.location.y + 'px';
-
-    pinImg.src = ad.author.avatar;
-    pinImg.alt = ad.offer.title;
-
-    return mapPin;
+  function isOnMap(coordsNum, coordsObj) {
+    if (coordsNum < coordsObj.MIN) {
+      return coordsObj.MIN;
+    }
+    if (coordsNum > coordsObj.MAX) {
+      return coordsObj.MAX;
+    }
+    return coordsNum;
   }
 
-  // Создает метки на карте
-  function renderPoints(ads) {
+  function activateMap(data) {
+    window.data = data;
+    window.pin.renderPoints(data.slice(0, PINS_LIMIT));
+    window.pin.addPinListeners();
+  }
+
+  function deactivateMap() {
+    var adFormEmpty = document.querySelector('.ad-form__photo--empty');
+    map.classList.add('map--faded');
+    adForm.classList.add('ad-form--disabled');
+    window.pin.removePins();
+    window.pin.removePopup();
+    mapPinMain.style.top = DEFAULT_MAIN_PIN_Y - PinSize.HEIGHT / 2 + 'px';
+    mapPinMain.style.left = DEFAULT_MAIN_PIN_X - PinSize.WIDTH / 2 + 'px';
+    adForm.reset();
+    activeState = false;
+    window.data = null;
+    window.constants.selectors.AVATAR.src = 'img/muffin-grey.svg';
+    adFormEmpty.remove();
+  }
+
+  function renderError() {
+    var errorConnection = error.content.cloneNode(true);
+
     var fragment = document.createDocumentFragment();
+    fragment.appendChild(errorConnection);
 
-    for (var i = 0; i < ads.length; i++) {
-      fragment.appendChild(renderPoint(ads[i]));
+    for (var i = 0; i < window.constants.selectors.MAIN.length; i++) {
+      window.constants.selectors.MAIN[i].appendChild(fragment);
     }
 
-    mapPins.appendChild(fragment);
+    document.addEventListener('keydown', closeErrorEscDown);
+    document.addEventListener('click', closeErrorMessage);
+    var errorButton = document.querySelector('.error__button');
+    errorButton.addEventListener('click', closeErrorMessage);
   }
 
-  // Удаляет пины
-  function removePins() {
-    var mapPinsItems = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-    for (var i = 0; i < mapPinsItems.length; i++) {
-      mapPinsItems[i].remove();
-    }
-  }
-
-  // Отрисовывает удобства(features) в объявлении
-  function renderFragmentFeature(data) {
-    var fragment = document.createDocumentFragment();
-    data.offer.features.forEach(function (it) {
-      var itemFeature = document.createElement('li');
-      itemFeature.className = 'popup__feature popup__feature--' + it;
-      fragment.appendChild(itemFeature);
-    });
-    return fragment;
-  }
-
-  // Отрисовывает фотографии жилья
-  function renderFragmentPhotos(data) {
-    var fragment = document.createDocumentFragment();
-    data.offer.photos.forEach(function (it) {
-      var itemPhoto = popupPhoto.cloneNode(true);
-      itemPhoto.src = it;
-      fragment.appendChild(itemPhoto);
-    });
-    return fragment;
-  }
-
-  // Создает карточку объявления
-  function renderAd(data) {
-    var ad = mapCard.cloneNode(true);
-    ad.querySelector('.popup__title').textContent = data.offer.title;
-    ad.querySelector('.popup__text--address').textContent = data.offer.address;
-    ad.querySelector('.popup__text--price').textContent = data.offer.price + ' ₽/ночь';
-    ad.querySelector('.popup__type').textContent = AccomodationType[data.offer.type];
-    ad.querySelector('.popup__text--capacity').textContent = data.offer.rooms + ' комнаты для ' + data.offer.guests + ' гостей';
-    ad.querySelector('.popup__text--time').textContent = 'Заезд после ' + data.offer.checkin + ', выезд до ' + data.offer.checkout;
-    ad.querySelector('.popup__features').innerHTML = '';
-    ad.querySelector('.popup__features').appendChild(renderFragmentFeature(data));
-    ad.querySelector('.popup__description').textContent = data.offer.description;
-    ad.querySelector('.popup__photos').removeChild(ad.querySelector('.popup__photo'));
-    ad.querySelector('.popup__photos').appendChild(renderFragmentPhotos(data));
-    ad.querySelector('.map__card img').src = data.author.avatar;
-    ad.querySelector('.popup__close').textContent = data.offer.popup;
-
-    mapPins.appendChild(ad);
-
-    var popupClose = document.querySelector('.popup__close');
-    popupClose.addEventListener('click', removeAd);
-    popupClose.addEventListener('keydown', onAdEscDown);
-
-    return mapCard;
-  }
-
-  function addPinListeners() {
-    var mapPinItems = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-
-    for (var i = 0; i < mapPinItems.length; i++) {
-      var button = mapPinItems[i];
-      button.addEventListener('click', clickPoint);
+  function closeErrorMessage() {
+    var errorMessage = document.querySelector('.error');
+    if (errorMessage) {
+      errorMessage.remove();
     }
   }
 
-  function getCurrentOffer() {
-    var ad = {};
-    for (var i = 0; i < window.data.length; i++) {
-      if (window.data[i].offer.title === event.target.alt) {
-        ad = window.data[i];
-      }
+  function closeErrorEscDown(evt) {
+    window.util.onEscDown(evt, closeErrorMessage);
+  }
+
+  function setAddress(weight, heigth) {
+    var left = mapPinMain.offsetLeft + Math.round(weight / 2);
+    var top = mapPinMain.offsetTop + Math.round(heigth);
+    address.value = left + ', ' + top;
+  }
+
+  function mainPinMousedownHandler(evt) {
+    if (!window.data) {
+      window.backend.load(activateMap, renderError);
     }
 
-    return ad;
-  }
-
-  function clickPoint(event) {
-    removePopup();
-    var currentOffer = getCurrentOffer();
-    renderAd(currentOffer);
-    event.preventDefault();
-  }
-
-  function removePopup() {
-    var popup = document.querySelector('.popup');
-    if (popup) {
-      popup.remove();
+    if (!activeState) {
+      window.util.hideElement('map--faded', map);
+      window.util.hideElement('ad-form--disabled', adForm);
+      window.activateForm();
+      activeState = true;
     }
+
+    var startCoords = {
+      x: evt.clientX,
+      y: evt.clientY
+    };
+
+    function mouseMoveHandler(moveEvt) {
+      moveEvt.preventDefault();
+
+      var shift = {
+        x: startCoords.x - moveEvt.clientX,
+        y: startCoords.y - moveEvt.clientY
+      };
+
+      startCoords = {
+        x: moveEvt.clientX,
+        y: moveEvt.clientY
+      };
+
+      mapPinMain.style.top = isOnMap(mapPinMain.offsetTop - shift.y, Coords.Y) + 'px';
+      mapPinMain.style.left = isOnMap(mapPinMain.offsetLeft - shift.x, Coords.X) + 'px';
+      setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
+    }
+    function mouseUpHandler() {
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
+      setAddress(MAP_PIN_WIDTH, MAP_PIN_HEIGHT);
+    }
+
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
   }
 
-  function removeAd(evt) {
-    evt.target.parentNode.remove();
-  }
-
-  function onAdEscDown(evt) {
-    window.util.onEscDown(evt, removePopup);
-  }
+  mapPinMain.addEventListener('mousedown', mainPinMousedownHandler);
+  adFormReset.addEventListener('click', deactivateMap);
 
   window.map = {
-    renderPoints: renderPoints,
-    removePins: removePins,
-    removePopup: removePopup,
-    addPinListeners: addPinListeners
+    activateMap: activateMap,
+    renderError: renderError,
+    deactivateMap: deactivateMap
   };
 })();
