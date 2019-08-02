@@ -33,7 +33,7 @@
       window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.FLAT);
       window.constants.selectors.PRICE.setAttribute('min', window.constants.price.FLAT);
     } else if (evt.target.value === 'house') {
-      window.constants.selectors.PRICE.setAttribute('placeholder',window.constants.price.HOUSE);
+      window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.HOUSE);
       window.constants.selectors.PRICE.setAttribute('min', window.constants.price.HOUSE);
     } else if (evt.target.value === 'palace') {
       window.constants.selectors.PRICE.setAttribute('placeholder', window.constants.price.PALACE);
