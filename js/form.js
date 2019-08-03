@@ -81,6 +81,6 @@
 
   window.form = {
     activateForm: activateForm,
-    disableForm: disableForm
+    disableForm: disableForm,
   };
 })();
