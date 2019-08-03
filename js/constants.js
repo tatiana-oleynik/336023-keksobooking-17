@@ -14,7 +14,7 @@
       PALACE: 10000,
     },
     limits: {
-      PINS: 5
+      PINS: 5,
     }
   };
 })();
