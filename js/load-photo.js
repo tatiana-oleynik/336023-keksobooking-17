@@ -2,7 +2,7 @@
 
 (function () {
   var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
-  var PhotoParametrs = {
+  var PhotoParameters = {
     WIDTH: '70px',
     HEIGHT: '70px'
   };
@@ -13,8 +13,8 @@
   function addPhotosHousing(src) {
     var image = document.createElement('img');
     image.src = src;
-    image.style.width = PhotoParametrs.WIDTH;
-    image.style.height = PhotoParametrs.HEIGHT;
+    image.style.width = PhotoParameters.WIDTH;
+    image.style.height = PhotoParameters.HEIGHT;
     image.classList.add('ad-form__photo--empty');
     previewPhoto.appendChild(image);
     return image;
