@@ -143,7 +143,6 @@
   adFormReset.addEventListener('click', deactivateMap);
 
   window.map = {
-    activateMap: activateMap,
     renderError: renderError,
     deactivateMap: deactivateMap
   };
