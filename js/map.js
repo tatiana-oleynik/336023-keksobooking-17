@@ -55,8 +55,11 @@
     adForm.reset();
     activeState = false;
     window.data = null;
+    window.form.disableForm();
     window.constants.selectors.AVATAR.src = 'img/muffin-grey.svg';
-    adFormEmpty.remove();
+    if (adFormEmpty) {
+      adFormEmpty.remove();
+    }
   }
 
   function renderError() {
@@ -100,7 +103,7 @@
     if (!activeState) {
       window.util.hideElement('map--faded', map);
       window.util.hideElement('ad-form--disabled', adForm);
-      window.activateForm();
+      window.form.activateForm();
       activeState = true;
     }
 

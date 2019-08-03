@@ -53,7 +53,6 @@
 
   function onSubmitSuccess() {
     showSuccess();
-    disableForm();
     window.map.deactivateMap();
   }
 
@@ -80,5 +79,8 @@
 
   init();
 
-  window.activateForm = activateForm;
+  window.form = {
+    activateForm: activateForm,
+    disableForm: disableForm
+  };
 })();
